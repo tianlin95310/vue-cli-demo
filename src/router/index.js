@@ -19,6 +19,8 @@ import dateFormat from '@/views/menu4/dateFormat'
 import stringDealwith from '@/views/menu4/stringDealwith'
 import testSyncAndAsync from '@/views/menu4/testSyncAndAsync'
 
+const drawPuke = () => import('@/views/menu5/drawPuke')
+
 Vue.use(Router)
 
 export default new Router({
@@ -26,42 +28,59 @@ export default new Router({
     path: '/',
     name: 'Home',
     component: Home,
-    children: [{
-      path: '/testChildModP',
-      component: testChildModP
-    }, {
-      path: '/testJsListAndMap',
-      component: testJsListAndMap
-    }, {
-      path: '/vueLifecycle',
-      component: vueLifecycle
-    }, {
-      path: '/listOperate',
-      component: listOperate
-    }, {
-      path: '/testTransition',
-      component: testTransition
-    }, {
-      path: '/testAnimation',
-      component: testAnimation
-    }, {
-      path: '/testCssStyle',
-      component: testCssStyle
-    }, {
-      path: '/testSyncAndAsync',
-      component: testSyncAndAsync
-    }, {
-      path: '/asyncAndAwait',
-      component: asyncAndAwait
-    }, {
-      path: '/dateFormat',
-      component: dateFormat
-    }, {
-      path: '/stringDealwith',
-      component: stringDealwith
-    }, {
-      path: '/vueTransition',
-      component: vueTransition
-    }]
+    children: [
+      {
+        path: '/testChildModP',
+        component: testChildModP
+      },
+      {
+        path: '/testJsListAndMap',
+        component: testJsListAndMap
+      },
+      {
+        path: '/vueLifecycle',
+        component: vueLifecycle
+      },
+      {
+        path: '/listOperate',
+        component: listOperate
+      },
+      {
+        path: '/testTransition',
+        component: testTransition
+      },
+      {
+        path: '/testAnimation',
+        component: testAnimation
+      },
+      {
+        path: '/testCssStyle',
+        component: testCssStyle
+      },
+      {
+        path: '/testSyncAndAsync',
+        component: testSyncAndAsync
+      },
+      {
+        path: '/asyncAndAwait',
+        component: asyncAndAwait
+      },
+      {
+        path: '/dateFormat',
+        component: dateFormat
+      },
+      {
+        path: '/stringDealwith',
+        component: stringDealwith
+      },
+      {
+        path: '/vueTransition',
+        component: vueTransition
+      },
+      {
+        path: '/drawPuke',
+        component: drawPuke
+      }
+    ]
   }]
 })

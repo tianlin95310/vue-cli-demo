@@ -109,6 +109,15 @@
               id: 404,
               goToPage: 'stringDealwith'
             }]
+          },
+          {
+            menuTitle: '练手小项目',
+            isOpen: false,
+            subMenus: [{
+              menuTitle: '画出扑克牌',
+              id: 501,
+              goToPage: 'drawPuke'
+            }]
           }
         ]
       }
