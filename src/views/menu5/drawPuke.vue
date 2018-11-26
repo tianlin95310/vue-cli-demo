@@ -60,7 +60,7 @@
   .draw-puke {
     width: 100%;
     .puke {
-      margin: 8px;
+      margin: 2px;
       border: 1px solid gray;
       width: 270px;
       height: 440px;

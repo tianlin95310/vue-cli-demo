@@ -17,6 +17,14 @@ module.exports = {
   ],
   // add your custom rules here
   'rules': {
+    "no-unused-vars": [0, {
+      // 允许声明未使用变量
+      "vars": "local",
+      // 参数不检查
+      "args": "none"
+    }],
+    "brace-style": 0,
+    "padded-blocks": 0,
     // allow paren-less arrow functions
     'arrow-parens': 0,
     // allow async-await

@@ -1,0 +1,522 @@
+<template>
+  <div class="content">
+    <video ref="video" class="video" loop="true">
+      <source src="../../images/pmv.mp4"/>
+    </video>
+
+    <img :class="['bg', isWin ? 'win' : '']"
+         :style="{opacity: opacity}"
+         :src="bg"/>
+    <div v-for="puke in allPukes"
+         :key="puke.id"
+         :style="{
+           backgroundImage: 'url(' + puke.src + ')',
+           left: puke.left,
+           zIndex: puke.zIndex,
+           opacity: puke.opacity,
+           top: puke.top}"
+         @click="onPukeClick(puke)"
+         :class="['puke', puke.id === chooseId ? 'choose': '']">
+    </div>
+    <div class="begin" @click="begin">开始</div>
+
+  </div>
+
+</template>
+
+<script>
+  // 窗口大小
+  const width = window.screen.width
+  const height = window.screen.height
+  // 牌的大小
+  const pukeWidth = 136
+  const pukeHeight = 220
+  // 中心牌的坐标
+  let centerX = width / 2 - pukeWidth / 2
+
+  let itemDividerW = (width - 7 * pukeWidth) / 8
+  let itemDividerH = (height / 2) / 7
+
+  // 随机生成一组牌
+  function makePoker () {
+    var poker = []
+    var table = {}
+    var colors = ['s', 'h', 'c', 'd']
+
+    while (poker.length !== 52) {
+      var n = Math.ceil(Math.random() * 13)
+      var index = Math.floor(Math.random() * 4)
+      var c = colors[index]
+      var v = {color: c, number: n}
+      if (!table[n + c]) {
+        table[n + c] = true
+        poker.push(v)
+      }
+    }
+    return poker
+  }
+
+  export default {
+    data () {
+      return {
+        pukes: [],
+        leftPs: [],
+        rightPs: [],
+        zIndex: 100,
+        chooseId: '',
+        chooseIn: -1,
+        isWin: false
+      }
+    },
+    computed: {
+      allPukes () {
+        let allPukes = []
+        this.pukes.forEach(item => {
+          allPukes.push(item)
+        })
+        this.leftPs.forEach(item => {
+          allPukes.push(item)
+        })
+        this.rightPs.forEach(item => {
+          allPukes.push(item)
+        })
+        return allPukes
+      },
+      opacity () {
+        let length = 0
+        this.pukes.forEach(item => {
+          if (item.top < '0px') {
+            length++
+          }
+        })
+        return (length) / 28.0
+      }
+    },
+    methods: {
+      win (win) {
+        let video = this.$refs.video
+        if (!video) {
+          return
+        }
+        if (win) {
+          video.play()
+          for (let i = 1; i < 50; i++) {
+            setTimeout(() => {
+              this.isWin = true
+              setTimeout(() => {
+                this.isWin = false
+              }, 300 * (i + 1))
+            }, 300 * i)
+          }
+        } else {
+          video.play()
+          setTimeout(() => {
+            video.pause()
+          }, 10000)
+        }
+
+      },
+      hidePuke (list, id) {
+        list.forEach(item => {
+          if (item.id === id) {
+            item.top = -pukeHeight + 'px'
+            item.left = centerX + 'px'
+            item.opacity = 0
+          }
+        })
+
+        let isOver = true
+        for (let i = 0; i < this.pukes.length; i++) {
+          if (this.allPukes[i].top > '0px') {
+            isOver = false
+          }
+        }
+        if (isOver) {
+          this.win(true)
+        } else {
+          this.win(false)
+        }
+
+      },
+      onPukeClick (puke) {
+        if (puke.position === 1) {
+          if (puke.value === 13) {
+            this.hidePuke(this.leftPs, puke.id)
+            return
+          }
+          else {
+            if (this.chooseId) {
+              let value = parseInt(this.chooseId.split(',')[0])
+              if (value + puke.value === 13) {
+                if (puke.position === 0) {
+                  this.hidePuke(this.pukes, puke.id)
+                } else if (puke.position === 1) {
+                  this.hidePuke(this.leftPs, puke.id)
+                } else if (puke.position === 2) {
+                  this.hidePuke(this.rightPs, puke.id)
+                }
+                if (this.chooseIn === 1) {
+                  this.hidePuke(this.leftPs, this.chooseId)
+                } else if (this.chooseIn === 2) {
+                  this.hidePuke(this.rightPs, this.chooseId)
+                } else if (this.chooseIn === 0) {
+                  this.hidePuke(this.pukes, this.chooseId)
+                }
+
+                this.chooseId = ''
+                this.chooseIn = -1
+                return
+              }
+              else {
+                if (this.chooseId !== puke.id) {
+                  this.chooseId = puke.id
+                  this.chooseIn = 1
+                  return
+                }
+              }
+            }
+            else {
+              this.chooseId = puke.id
+              this.chooseIn = 1
+              return
+            }
+          }
+
+          let thisOnes = this.leftPs.filter(item => {
+            if (item.id === puke.id) {
+              return item
+            }
+          })
+          this.leftPs.forEach(item => {
+            if (item.id === this.chooseId) {
+              this.chooseId = ''
+              this.chooseIn = -1
+            }
+          })
+          let thisOne = thisOnes[0]
+          let index = this.leftPs.indexOf(thisOne)
+          if (thisOne.position === 1) {
+            thisOne.top = itemDividerH * 1.5 + 'px'
+            thisOne.left = width - pukeWidth * 0.1 - pukeWidth + 'px'
+            thisOne.zIndex = this.zIndex++
+            setTimeout(() => {
+              if (index !== -1) {
+                this.leftPs.splice(index, 1)
+                thisOne.position = 2
+                this.rightPs.push(thisOne)
+              }
+            }, 1000)
+          }
+        }
+        else if (puke.position === 2) {
+          if (puke.value === 13) {
+            this.hidePuke(this.rightPs, puke.id)
+            return
+          }
+          else {
+            if (this.chooseId) {
+              let value = parseInt(this.chooseId.split(',')[0])
+              if (value + puke.value === 13) {
+                if (puke.position === 0) {
+                  this.hidePuke(this.pukes, puke.id)
+                } else if (puke.position === 1) {
+                  this.hidePuke(this.leftPs, puke.id)
+                } else if (puke.position === 2) {
+                  this.hidePuke(this.rightPs, puke.id)
+                }
+                if (this.chooseIn === 1) {
+                  this.hidePuke(this.leftPs, this.chooseId)
+                } else if (this.chooseIn === 2) {
+                  this.hidePuke(this.rightPs, this.chooseId)
+                } else if (this.chooseIn === 0) {
+                  this.hidePuke(this.pukes, this.chooseId)
+                }
+                this.chooseId = ''
+                this.chooseIn = -1
+                return
+              }
+              else {
+                if (this.chooseId !== puke.id) {
+                  this.chooseId = puke.id
+                  this.chooseIn = 2
+                  return
+                }
+              }
+            }
+            else {
+              this.chooseId = puke.id
+              this.chooseIn = 2
+              return
+            }
+          }
+          let thisOnes = this.rightPs.filter(item => {
+            if (item.id === puke.id) {
+              return item
+            }
+          })
+          this.rightPs.forEach(item => {
+            if (item.id === this.chooseId) {
+              this.chooseId = ''
+              this.chooseIn = -1
+            }
+          })
+          let thisOne = thisOnes[0]
+          let index = this.rightPs.indexOf(thisOne)
+          thisOne.top = itemDividerH * 1.5 + 'px'
+          thisOne.left = pukeWidth * 0.1 + 'px'
+          thisOne.zIndex = this.zIndex++
+          // 左右两边进行交换
+          setTimeout(() => {
+            if (index !== -1) {
+              this.rightPs.splice(index, 1)
+              thisOne.position = 1
+              this.leftPs.push(thisOne)
+            }
+          }, 1000)
+        }
+        else if (puke.position === 0) {
+          if (this.checkPukesCanClick(puke)) {
+
+            if (puke.value === 13) {
+              this.hidePuke(this.pukes, puke.id)
+            }
+            else {
+              if (this.chooseId) {
+                let value = parseInt(this.chooseId.split(',')[0])
+                if (value + puke.value === 13) {
+                  if (puke.position === 0) {
+                    this.hidePuke(this.pukes, puke.id)
+                  } else if (puke.position === 1) {
+                    this.hidePuke(this.leftPs, puke.id)
+                  } else if (puke.position === 2) {
+                    this.hidePuke(this.rightPs, puke.id)
+                  }
+                  if (this.chooseIn === 1) {
+                    this.hidePuke(this.leftPs, this.chooseId)
+                  } else if (this.chooseIn === 2) {
+                    this.hidePuke(this.rightPs, this.chooseId)
+                  } else if (this.chooseIn === 0) {
+                    this.hidePuke(this.pukes, this.chooseId)
+                  }
+                  this.chooseId = ''
+                  this.chooseIn = -1
+                }
+                else {
+                  if (puke.id === this.chooseId) {
+                    this.chooseId = ''
+                    this.chooseIn = -1
+                  }
+                  else {
+                    this.chooseId = puke.id
+                    this.chooseIn = 0
+                  }
+                }
+              }
+              else {
+                this.chooseId = puke.id
+                this.chooseIn = 0
+              }
+
+            }
+          }
+        }
+      },
+      checkPukesCanClick (puke) {
+        let maxI = 0
+        this.pukes.forEach(item => {
+          if (item.i > maxI) {
+            maxI = item.i
+          }
+        })
+        if (puke.i === maxI) {
+          return true
+        }
+        else {
+          let lefti = puke.i + 1
+          let leftj = puke.j
+          let righti = puke.i + 1
+          let rightj = puke.j + 1
+          console.log('' + puke.i + '---' + puke.j)
+          console.log('' + lefti + '---' + leftj)
+          console.log('' + righti + '---' + rightj)
+          let leftE = false
+          let rightE = false
+          this.pukes.forEach(item => {
+            if (item.top > '0px') {
+              if (item.i === lefti && item.j === leftj) {
+                leftE = true
+              }
+              if (item.i === righti && item.j === rightj) {
+                rightE = true
+              }
+            }
+          })
+          console.log('leftE---' + leftE)
+          console.log('rightE---' + rightE)
+          console.log(JSON.stringify(this.pukes))
+          if (leftE || rightE) {
+            return false
+          }
+          else {
+            return true
+          }
+        }
+      },
+      resetPuke () {
+        this.pukes = []
+        this.leftPs = []
+        this.rightPs = []
+        this.zIndex = 100
+        this.chooseId = ''
+        this.chooseIn = -1
+        var dict = {1: 'A', 2: 2, 3: 3, 4: 4, 5: 5, 6: 6, 7: 7, 8: 8, 9: 9, 10: 'T', 11: 'J', 12: 'Q', 13: 'K'}
+        let pokers = makePoker()
+        let index = 0
+        for (let i = 0; i < 7; i++) {
+          for (let j = 0; j < i + 1; j++) {
+            let poker = pokers[index++]
+            let puke = {
+              left: centerX + 'px',
+              top: 0 + 'px',
+              src: require('../../images/' + dict[poker.number] + poker.color + '.png'),
+              id: poker.number + ',' + poker.color,
+              zIndex: this.zIndex++,
+              position: 0,
+              value: poker.number,
+              i: i,
+              j: j
+            }
+            this.pukes.push(puke)
+          }
+        }
+        for (let i = index; i < pokers.length; i++) {
+          let poker = pokers[i]
+          let pukeLeft = {
+            left: centerX + 'px',
+            top: 0 + 'px',
+            src: require('../../images/' + dict[poker.number] + poker.color + '.png'),
+            id: poker.number + ',' + poker.color,
+            zIndex: this.zIndex++,
+            value: poker.number,
+            position: 1
+          }
+          this.leftPs.push(pukeLeft)
+        }
+        this.bg = this.pukes[Math.ceil(Math.random() * 28)].src
+      },
+      animOneByOne () {
+        for (let k = 0; k < this.pukes.length; k++) {
+          let item = this.pukes[k]
+          setTimeout(() => {
+            let i = item.i
+            let j = item.j
+            let top = (i + 1 / 2) * itemDividerH
+            let left = centerX
+            let center = i / 2
+            if (j < center) {
+              left = centerX + (j - center) * (itemDividerW + pukeWidth)
+            } else if (j > center) {
+              left = centerX + (j - center) * (itemDividerW + pukeWidth)
+            }
+            item.left = left + 'px'
+            item.top = top + 'px'
+          }, k * 30)
+        }
+
+        for (let k = 0; k < this.leftPs.length; k++) {
+          let item = this.leftPs[k]
+          setTimeout(() => {
+            item.left = pukeWidth * 0.1 + 'px'
+            item.top = itemDividerH * 1.5 + 'px'
+          }, k * 30)
+        }
+      },
+      begin () {
+        this.pukes = []
+        this.leftPs = []
+        this.rightPs = []
+        this.win(false)
+        setTimeout(() => {
+          this.resetPuke()
+          this.animOneByOne()
+        }, 200)
+      }
+    },
+    mounted () {
+      // document dom树的高度为0，也就是数值高度站100%没有用的原因
+      console.log('mounted width---' + document.body.clientWidth)
+      console.log('mounted height---' + document.body.clientHeight)
+    },
+    created () {
+      console.log('created width---' + window.screen.width)
+      console.log('created height---' + window.screen.height)
+    }
+  }
+</script>
+
+<style scoped>
+
+  .win {
+    transform: scale(0.9, 0.9);
+  }
+  .bg {
+    background-size: 100%;
+    left: calc(50% - 190px);
+    background-repeat: round;
+    position: absolute;
+    width: 380px;
+    bottom: 0;
+    transition: all 0.3s ease;
+  }
+  .video {
+    top: 20px;
+    right: 20px;
+    position: absolute;
+    width: 350px;
+    object-fit: fill;
+  }
+  .choose {
+    box-shadow: 0px 0px 3px 3px gold;
+    transform: scale(1.1, 1.1);
+  }
+
+  .begin {
+    background: #0f131c url(../../images/button.png) -32px 88px;
+    background-size: 220px;
+    border-radius: 8px;
+    box-shadow: 0 0 0px 0px orange;
+    transition: box-shadow 0.3s ease-in-out;
+    line-height: 45px;
+    z-index: 300;
+    text-align: center;
+    font-size: 20px;
+    color: #fff;
+    top: 40px;
+    left: 200px;
+    position: absolute;
+    width: 142px;
+    height: 45px;
+  }
+  .begin:hover {
+    box-shadow: 0 0 10px 5px orange;
+  }
+  .puke {
+    background-size: 100%;
+    background-repeat: round;
+    position: absolute;
+    width: 136px;
+    height: 220px;
+    border-radius: 10px;
+    /*大于1的值会有回弹效果*/
+    transition: 1s cubic-bezier(0.25, 0.1, 0.25, 0.9);
+    transition-property: left,top,opacity;
+  }
+
+  .content {
+    background-size: 100%;
+    background-image: url("../../images/bg.jpg");
+    position: relative;
+    width: 100%;
+    height: 100vh;
+  }
+</style>

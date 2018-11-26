@@ -82,8 +82,9 @@
               id: 302,
               goToPage: 'listOperate'
             }, {
-              menuTitle: 'add',
-              id: 303
+              menuTitle: '函数',
+              id: 303,
+              goToPage: 'func'
             }, {
               menuTitle: 'add',
               id: 304
@@ -113,11 +114,23 @@
           {
             menuTitle: '练手小项目',
             isOpen: false,
-            subMenus: [{
-              menuTitle: '画出扑克牌',
-              id: 501,
-              goToPage: 'drawPuke'
-            }]
+            subMenus: [
+              {
+                menuTitle: '画出扑克牌',
+                id: 501,
+                goToPage: 'drawPuke'
+              },
+              {
+                menuTitle: '画出扑克牌用Canvas',
+                id: 502,
+                goToPage: 'drawPukeInCanvas'
+              },
+              {
+                menuTitle: '扑克牌游戏1',
+                id: 503,
+                goToPage: 'pukegame1'
+              }
+            ]
           }
         ]
       }
@@ -257,14 +270,14 @@
     .level1-route {
       padding: 20px;
       height: 100%;
-      width: 80%;
+      width: 85%;
       float: right;
     }
 
     .nav {
       float: left; /*元素脱离文档流，不存在块行属性，只要行内剩余的控件足够就在该行显示，不换行*/
       /*display: inline-block;*/ /*左边的块作为行内块元素，他不进行换行*/
-      width: 20%;
+      width: 15%;
       height: 100%;
       background-color: lightgrey;
 
