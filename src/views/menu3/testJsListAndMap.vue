@@ -15,10 +15,7 @@
       <div>
         <button @click="testNull">测试空的判断</button>
       </div>
-      <br/>
-      <div>
-        <button @click="jsEmptyToJson">js空串转json</button>
-      </div>
+
     </div>
 
   </div>
@@ -33,10 +30,6 @@
     created () {
     },
     methods: {
-      jsEmptyToJson () {
-        let str = ''
-        console.log('--- ' + JSON.stringify(str))
-      },
       testNull () {
         let test1
         if (test1) {

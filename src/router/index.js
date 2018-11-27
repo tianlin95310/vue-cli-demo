@@ -6,10 +6,12 @@ import Home from '@/views/home'
 import testChildModP from '@/views/menu1/testChildModP'
 import vueLifecycle from '@/views/menu1/vueLifecycle'
 import vueTransition from '@/views/menu1/vueTransition'
+const notVModelBind = () => import('@/views/menu1/notVModelBind')
 
 import testTransition from '@/views/menu2/testTransition'
 import testAnimation from '@/views/menu2/testAnimation'
 import testCssStyle from '@/views/menu2/testCssStyle'
+const testFlex = () => import('@/views/menu2/testFlex')
 
 import testJsListAndMap from '@/views/menu3/testJsListAndMap'
 import listOperate from '@/views/menu3/listOperate'
@@ -27,40 +29,46 @@ export default new Router({
     name: 'Home',
     component: Home,
     children: [{
-      path: '/testChildModP',
+      path: 'testChildModP',
       component: testChildModP
     }, {
-      path: '/testJsListAndMap',
+      path: 'testJsListAndMap',
       component: testJsListAndMap
     }, {
-      path: '/vueLifecycle',
+      path: 'vueLifecycle',
       component: vueLifecycle
     }, {
-      path: '/listOperate',
+      path: 'notVModelBind',
+      component: notVModelBind
+    }, {
+      path: 'testFlex',
+      component: testFlex
+    }, {
+      path: 'listOperate',
       component: listOperate
     }, {
-      path: '/testTransition',
+      path: 'testTransition',
       component: testTransition
     }, {
-      path: '/testAnimation',
+      path: 'testAnimation',
       component: testAnimation
     }, {
-      path: '/testCssStyle',
+      path: 'testCssStyle',
       component: testCssStyle
     }, {
-      path: '/testSyncAndAsync',
+      path: 'testSyncAndAsync',
       component: testSyncAndAsync
     }, {
-      path: '/asyncAndAwait',
+      path: 'asyncAndAwait',
       component: asyncAndAwait
     }, {
-      path: '/dateFormat',
+      path: 'dateFormat',
       component: dateFormat
     }, {
-      path: '/stringDealwith',
+      path: 'stringDealwith',
       component: stringDealwith
     }, {
-      path: '/vueTransition',
+      path: 'vueTransition',
       component: vueTransition
     }]
   }]

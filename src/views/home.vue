@@ -11,7 +11,7 @@
 
         <ul :class="menu.isOpen === true ? 'submenuShow' : 'submenuClose'">
           <li v-for="subMenu in menu.subMenus" :key="subMenu.id" @click="onNavClick(subMenu)">
-            <div :class="menu.isOpen === true ? 'menuItem' : 'menuItemClose'">
+            <div :class="menu.isOpen === true ? 'menuItemInner' : 'menuItemClose'">
               <span class="menuTitle">{{subMenu.menuTitle}}</span>
             </div>
           </li>
@@ -49,8 +49,9 @@
               id: 103,
               goToPage: 'vueTransition'
             }, {
-              menuTitle: 'add',
-              id: 104
+              menuTitle: '非v-model实现双向绑定',
+              id: 104,
+              goToPage: 'notVModelBind'
             }]
           },
           {
@@ -65,9 +66,13 @@
               id: 203,
               goToPage: 'testAnimation'
             }, {
-              menuTitle: 'css属性探索',
+              menuTitle: 'css布局属性探索',
               goToPage: 'testCssStyle',
               id: 201
+            }, {
+              menuTitle: 'flex布局',
+              goToPage: 'testFlex',
+              id: 204
             }]
           },
           {
@@ -123,9 +128,10 @@
         this.menus.forEach(item => {
           if (item.menuTitle === menu.menuTitle) {
             item.isOpen = !item.isOpen
-          } else {
-            item.isOpen = false
           }
+//          else {
+//            item.isOpen = false
+//          }
         })
       }
     },
@@ -178,55 +184,10 @@
 </script>
 
 <style lang="less" scoped>
-
   @import "../assets/css/anim.css";
   @import "http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css";
-
-  .faOpen {
-
-    transition: all 0.5s;
-    -moz-transition: all 0.5s; /* Firefox 4 */
-    -webkit-transition: all 0.5s; /* Safari and Chrome */
-    -o-transition: all 0.5s; /* Opera */
-  }
-
-  .faClose {
-
-    transform: rotate(-180deg);
-    -ms-transform: rotate(-180deg); /* IE 9 */
-    -webkit-transform: rotate(-180deg); /* Safari and Chrome */
-    -o-transform: rotate(-180deg); /* Opera */
-    -moz-transform: rotate(-180deg); /* Firefox */
-
-    transition: all 0.5s;
-    -moz-transition: all 0.5s; /* Firefox 4 */
-    -webkit-transition: all 0.5s; /* Safari and Chrome */
-    -o-transition: all 0.5s; /* Opera */
-
-  }
-
-  .submenuClose {
-    height: 0px;
-    display: block;
-    animation: fadeinB;
-    animation-duration: 2s;
-  }
-
-  .submenuShow {
-    height: auto;
-    width: 100%;
-    display: block;
-    animation: fadeinB;
-    animation-duration: 2s;
-  }
-
   .selected {
     background-color: aqua;
-  }
-
-  .menuTitle {
-    font-size: 12px;
-    text-align: center;
   }
 
   .fa {
@@ -240,13 +201,11 @@
     width: 100px;
   }
    */
-
   .root {
     width: 100%;
 
     // 在这里写的样式会往下传递，router-view里面的如果有引用level1-route会有该样式
     .level1-route {
-      padding: 20px;
       height: 100%;
       width: 80%;
       float: right;
@@ -263,16 +222,65 @@
         list-style: none;
         display: list-item;
 
+        .faOpen {
+
+          transition: all 0.5s;
+          -moz-transition: all 0.5s; /* Firefox 4 */
+          -webkit-transition: all 0.5s; /* Safari and Chrome */
+          -o-transition: all 0.5s; /* Opera */
+        }
+
+        .faClose {
+
+          transform: rotate(-180deg);
+          -ms-transform: rotate(-180deg); /* IE 9 */
+          -webkit-transform: rotate(-180deg); /* Safari and Chrome */
+          -o-transform: rotate(-180deg); /* Opera */
+          -moz-transform: rotate(-180deg); /* Firefox */
+
+          transition: all 0.5s;
+          -moz-transition: all 0.5s; /* Firefox 4 */
+          -webkit-transition: all 0.5s; /* Safari and Chrome */
+          -o-transition: all 0.5s; /* Opera */
+
+        }
+
+        .submenuClose {
+          height: 0px;
+          display: block;
+          animation: fadeinB;
+          animation-duration: 2s;
+        }
+
+        .submenuShow {
+          height: auto;
+          width: 100%;
+          display: block;
+          animation: fadeinB;
+          animation-duration: 2s;
+        }
+
         .menuItem {
           padding: 8px;
           display: block;
+        }
+
+        .menuTitle {
+          font-size: 12px;
+          text-align: center;
+        }
+
+        .menuItemInner {
+          padding: 8px;
+          display: block;
+          background: white;
         }
 
         .menuItemClose {
           display: none;
         }
 
-        .menuItem:hover {
+        .menuItemInner:hover {
           padding: 8px;
           background-color: aqua;
         }

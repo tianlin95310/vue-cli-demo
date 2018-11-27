@@ -5,11 +5,31 @@
     </div>
 
     <br/>
+    <div>
+      <button @click="strIndex">js字符串截取</button>
+    </div>
+
+    <br/>
+    <div>
+      <button @click="jsEmptyToJson">js空串转json</button>
+    </div>
+
+    <br/>
   </div>
 </template>
 <script>
   export default {
     methods: {
+      jsEmptyToJson () {
+        let str = ''
+        console.log('--- ' + JSON.stringify(str))
+      },
+      strIndex () {
+        let str = '123.jpg'
+        let index = str.lastIndexOf('.')
+        let newstr = str.substring(index, str.length)
+        console.log('---newstr---' + newstr)
+      },
       testReg () {
         let s = '00012'
         console.log(s.replace(/\b(0+)/gi, ''))
