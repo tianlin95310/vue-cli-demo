@@ -1,12 +1,13 @@
 <template>
   <div class="content">
-    <video ref="video" class="video" loop="true">
-      <source src="../../images/pmv.mp4"/>
+
+    <video ref="video"
+           loop="loop"
+           v-show="isWin"
+           class="video">
+      <source src="../../images/yin.mp4"/>
     </video>
 
-    <img :class="['bg', isWin ? 'win' : '']"
-         :style="{opacity: opacity}"
-         :src="bg"/>
     <div v-for="puke in allPukes"
          :key="puke.id"
          :style="{
@@ -80,41 +81,22 @@
         this.rightPs.forEach(item => {
           allPukes.push(item)
         })
+        console.log(allPukes.length)
         return allPukes
-      },
-      opacity () {
-        let length = 0
-        this.pukes.forEach(item => {
-          if (item.top < '0px') {
-            length++
-          }
-        })
-        return (length) / 28.0
       }
     },
     methods: {
       win (win) {
-        let video = this.$refs.video
-        if (!video) {
-          return
-        }
         if (win) {
-          video.play()
-          for (let i = 1; i < 50; i++) {
-            setTimeout(() => {
-              this.isWin = true
-              setTimeout(() => {
-                this.isWin = false
-              }, 300 * (i + 1))
-            }, 300 * i)
+          this.isWin = true
+          let video = this.$refs.video
+          if (!video) {
+            return
           }
-        } else {
           video.play()
-          setTimeout(() => {
-            video.pause()
-          }, 10000)
+        } else {
+          this.isWin = false
         }
-
       },
       hidePuke (list, id) {
         list.forEach(item => {
@@ -124,19 +106,15 @@
             item.opacity = 0
           }
         })
-
         let isOver = true
         for (let i = 0; i < this.pukes.length; i++) {
-          if (this.allPukes[i].top > '0px') {
+          if (this.pukes[i].top > '0px') {
             isOver = false
           }
         }
         if (isOver) {
           this.win(true)
-        } else {
-          this.win(false)
         }
-
       },
       onPukeClick (puke) {
         if (puke.position === 1) {
@@ -428,7 +406,7 @@
           setTimeout(() => {
             item.left = pukeWidth * 0.1 + 'px'
             item.top = itemDividerH * 1.5 + 'px'
-          }, k * 30)
+          }, (k + 28) * 30)
         }
       },
       begin () {
@@ -456,24 +434,14 @@
 
 <style scoped>
 
-  .win {
-    transform: scale(0.9, 0.9);
-  }
-  .bg {
-    background-size: 100%;
-    left: calc(50% - 190px);
-    background-repeat: round;
-    position: absolute;
-    width: 380px;
-    bottom: 0;
-    transition: all 0.3s ease;
-  }
   .video {
-    top: 20px;
-    right: 20px;
-    position: absolute;
-    width: 350px;
+    display: block;
+    width: 60%;
+    top: 80px;
+    left: 20%;
     object-fit: fill;
+    z-index: 99;
+    position: relative;
   }
   .choose {
     box-shadow: 0px 0px 3px 3px gold;
