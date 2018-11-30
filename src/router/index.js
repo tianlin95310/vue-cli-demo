@@ -22,74 +22,83 @@ import stringDealwith from '@/views/menu4/stringDealwith'
 import testSyncAndAsync from '@/views/menu4/testSyncAndAsync'
 
 const drawPuke = () => import('@/views/menu5/drawPuke')
+const drawPukeInCanvas = () => import('@/views/menu5/drawPukeInCanvas')
 
 Vue.use(Router)
 
 export default new Router({
-  routes: [{
-    path: '/',
-    name: 'Home',
-    component: Home,
-    children: [
-      {
-        path: 'notVModelBind',
-        component: notVModelBind
-      }, {
-        path: 'testFlex',
-        component: testFlex
-      },
-      {
-        path: '/testChildModP',
-        component: testChildModP
-      },
-      {
-        path: '/testJsListAndMap',
-        component: testJsListAndMap
-      },
-      {
-        path: '/vueLifecycle',
-        component: vueLifecycle
-      },
-      {
-        path: '/listOperate',
-        component: listOperate
-      },
-      {
-        path: '/testTransition',
-        component: testTransition
-      },
-      {
-        path: '/testAnimation',
-        component: testAnimation
-      },
-      {
-        path: '/testCssStyle',
-        component: testCssStyle
-      },
-      {
-        path: '/testSyncAndAsync',
-        component: testSyncAndAsync
-      },
-      {
-        path: '/asyncAndAwait',
-        component: asyncAndAwait
-      },
-      {
-        path: '/dateFormat',
-        component: dateFormat
-      },
-      {
-        path: '/stringDealwith',
-        component: stringDealwith
-      },
-      {
-        path: '/vueTransition',
-        component: vueTransition
-      },
-      {
-        path: '/drawPuke',
-        component: drawPuke
-      }
-    ]
-  }]
+  routes: [
+    {
+      path: '/',
+      name: 'Home',
+      component: Home,
+      children: [
+        {
+          path: '/func',
+          component: () => import('@/views/menu3/func')
+        },
+        {
+          path: '/testChildModP',
+          component: testChildModP
+        },
+        {
+          path: '/testJsListAndMap',
+          component: testJsListAndMap
+        },
+        {
+          path: '/vueLifecycle',
+          component: vueLifecycle
+        },
+        {
+          path: '/listOperate',
+          component: listOperate
+        },
+        {
+          path: '/testTransition',
+          component: testTransition
+        },
+        {
+          path: '/testAnimation',
+          component: testAnimation
+        },
+        {
+          path: '/testCssStyle',
+          component: testCssStyle
+        },
+        {
+          path: '/testSyncAndAsync',
+          component: testSyncAndAsync
+        },
+        {
+          path: '/asyncAndAwait',
+          component: asyncAndAwait
+        },
+        {
+          path: '/dateFormat',
+          component: dateFormat
+        },
+        {
+          path: '/stringDealwith',
+          component: stringDealwith
+        },
+        {
+          path: '/vueTransition',
+          component: vueTransition
+        },
+        {
+          path: '/drawPuke',
+          component: drawPuke
+        },
+        {
+          path: '/drawPukeInCanvas',
+          component: drawPukeInCanvas
+        }
+      ]
+    },
+    {
+      path: '/pukegame1',
+      name: 'pukegame1',
+      component: () => import('@/views/menu5/pukegame1')
+    }
+  ]
 })

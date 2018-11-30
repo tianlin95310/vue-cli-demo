@@ -162,7 +162,7 @@
     height: 10%;
 
     opacity: 0.5;
-    transition: all 2s;
+    transition: opacity 2s;
     -moz-transition:all 2s; /* Firefox 4 */
     -webkit-transition:all 2s; /* Safari and Chrome */
     -o-transition:all 2s; /* Opera */
