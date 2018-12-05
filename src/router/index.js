@@ -97,6 +97,11 @@ export default new Router({
       path: '/pukegame1',
       name: 'pukegame1',
       component: () => import('@/views/menu5/pukegame1')
+    },
+    {
+      path: '/pukegame2',
+      name: 'pukegame2',
+      component: () => import('@/views/menu5/pukegame2')
     }
   ]
 })
