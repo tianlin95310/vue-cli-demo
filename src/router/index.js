@@ -6,10 +6,12 @@ import Home from '@/views/home'
 import testChildModP from '@/views/menu1/testChildModP'
 import vueLifecycle from '@/views/menu1/vueLifecycle'
 import vueTransition from '@/views/menu1/vueTransition'
+const notVModelBind = () => import('@/views/menu1/notVModelBind')
 
 import testTransition from '@/views/menu2/testTransition'
 import testAnimation from '@/views/menu2/testAnimation'
 import testCssStyle from '@/views/menu2/testCssStyle'
+const testFlex = () => import('@/views/menu2/testFlex')
 
 import testJsListAndMap from '@/views/menu3/testJsListAndMap'
 import listOperate from '@/views/menu3/listOperate'
