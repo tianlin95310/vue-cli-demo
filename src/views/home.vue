@@ -132,9 +132,14 @@
                 goToPage: 'drawPukeInCanvas'
               },
               {
-                menuTitle: '扑克牌游戏1',
+                menuTitle: '金字塔扑克牌游戏',
                 id: 503,
                 goToPage: 'pukegame1'
+              },
+              {
+                menuTitle: '斗地主',
+                id: 504,
+                goToPage: 'pukegame2'
               }
             ]
           }

@@ -9,6 +9,7 @@
            zIndex: puke.zIndex,
            opacity: puke.opacity,
            top: puke.top}"
+         on
          @click="onPukeClick(puke)"
          :class="['puke', puke.id === chooseId ? 'choose': '']">
     </div>
@@ -73,14 +74,16 @@
         this.rightPs.forEach(item => {
           allPukes.push(item)
         })
-        console.log(allPukes.length)
         return allPukes
       }
     },
     methods: {
       win (win) {
-        if (win) {
-        } else {
+        if (window.confirm('你赢了，是否再来一局？')) {
+          this.begin()
+        }
+        else {
+
         }
       },
       hidePuke (list, id) {
@@ -98,7 +101,9 @@
           }
         }
         if (isOver) {
-          this.win(true)
+          setTimeout(() => {
+            this.win(true)
+          }, 1000)
         }
       },
       onPukeClick (puke) {
@@ -299,9 +304,6 @@
           let leftj = puke.j
           let righti = puke.i + 1
           let rightj = puke.j + 1
-          console.log('' + puke.i + '---' + puke.j)
-          console.log('' + lefti + '---' + leftj)
-          console.log('' + righti + '---' + rightj)
           let leftE = false
           let rightE = false
           this.pukes.forEach(item => {
@@ -314,9 +316,6 @@
               }
             }
           })
-          console.log('leftE---' + leftE)
-          console.log('rightE---' + rightE)
-          console.log(JSON.stringify(this.pukes))
           if (leftE || rightE) {
             return false
           }
@@ -365,7 +364,6 @@
           }
           this.leftPs.push(pukeLeft)
         }
-        this.bg = this.pukes[Math.ceil(Math.random() * 28)].src
       },
       animOneByOne () {
         for (let k = 0; k < this.pukes.length; k++) {
@@ -391,18 +389,17 @@
           setTimeout(() => {
             item.left = pukeWidth * 0.1 + 'px'
             item.top = itemDividerH * 1.5 + 'px'
-          }, (k + 28) * 30)
+          }, (k + this.pukes.length) * 30)
         }
       },
       begin () {
         this.pukes = []
         this.leftPs = []
         this.rightPs = []
-        this.win(false)
         setTimeout(() => {
           this.resetPuke()
           this.animOneByOne()
-        }, 200)
+        }, 500)
       }
     },
     mounted () {
@@ -418,6 +415,7 @@
 </script>
 
 <style scoped>
+
   .choose {
     box-shadow: 0px 0px 3px 3px gold;
     transform: scale(1.1, 1.1);
@@ -452,12 +450,12 @@
     border-radius: 10px;
     /*大于1的值会有回弹效果*/
     transition: 1s cubic-bezier(0.25, 0.1, 0.25, 0.9);
-    transition-property: left,top,opacity;
+    transition-property: left,top,opacity,box-shadow;
   }
 
   .content {
-    background-size: 100%;
-    background-image: url("../../images/bg.jpg");
+    background: black center no-repeat fixed;
+    background-size: 30%;
     position: relative;
     width: 100%;
     height: 100vh;
