@@ -34,8 +34,16 @@ export default new Router({
       component: Home,
       children: [
         {
+          path: '/testFlex',
+          component: () => import('@/views/menu2/testFlex')
+        },
+        {
           path: '/func',
           component: () => import('@/views/menu3/func')
+        },
+        {
+          path: '/objectAnal',
+          component: () => import('@/views/menu3/objectAnal')
         },
         {
           path: '/testChildModP',

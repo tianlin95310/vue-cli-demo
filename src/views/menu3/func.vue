@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>对象属性操作是值传递的</h1>
+    <h2>对象属性操作是"引用"传递的</h2>
     <div>
       <button @click="change">changeObject</button>
     </div>
@@ -53,5 +53,7 @@
 </script>
 
 <style scoped>
-
+  div > div {
+    margin-top: 10px;
+  }
 </style>

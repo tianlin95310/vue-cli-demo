@@ -63,7 +63,6 @@
     },
     errorCaptured () {
       console.log('parent errorCaptured')
-
       return false
     }
 

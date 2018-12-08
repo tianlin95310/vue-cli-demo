@@ -1,13 +1,11 @@
 <template>
   <div>
-
     <button v-on:click="show = 2">
       Toggle
     </button>
 
-    <transition name="fade">
-      <p v-if="show == 1">{{value1}}</p>
-      <p v-if="show == 2">{{value2}}</p>
+    <transition name="fade" mode="out-in">
+      <p v-if="show == 1">{{value2}}</p>
     </transition>
   </div>
 </template>

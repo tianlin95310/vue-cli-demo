@@ -1,13 +1,6 @@
 <template>
   <div class="content">
 
-    <video ref="video"
-           loop="loop"
-           v-show="isWin"
-           class="video">
-      <source src="../../images/yin.mp4"/>
-    </video>
-
     <div v-for="puke in allPukes"
          :key="puke.id"
          :style="{
@@ -65,8 +58,7 @@
         rightPs: [],
         zIndex: 100,
         chooseId: '',
-        chooseIn: -1,
-        isWin: false
+        chooseIn: -1
       }
     },
     computed: {
@@ -88,14 +80,7 @@
     methods: {
       win (win) {
         if (win) {
-          this.isWin = true
-          let video = this.$refs.video
-          if (!video) {
-            return
-          }
-          video.play()
         } else {
-          this.isWin = false
         }
       },
       hidePuke (list, id) {
@@ -433,16 +418,6 @@
 </script>
 
 <style scoped>
-
-  .video {
-    display: block;
-    width: 60%;
-    top: 80px;
-    left: 20%;
-    object-fit: fill;
-    z-index: 99;
-    position: relative;
-  }
   .choose {
     box-shadow: 0px 0px 3px 3px gold;
     transform: scale(1.1, 1.1);
