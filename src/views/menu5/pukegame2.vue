@@ -375,22 +375,21 @@
     left: 200px;
   }
   .button{
-    background: #0f131c url(../../images/button.png) -32px 88px;
-    background-size: 220px;
+    background: orange ;
     border-radius: 8px;
-    box-shadow: 0 0 0px 0px orange;
-    transition: box-shadow 0.3s ease-in-out;
-    line-height: 45px;
+    box-shadow: 0 0 0px 0px white;
+    transition: all 0.3s ease-in-out;
+    line-height: 46px;
     z-index: 300;
     text-align: center;
-    font-size: 20px;
-    color: #fff;
+    font-size: 25px;
+    color: grey;
     position: absolute;
-    width: 142px;
+    width: 150px;
     height: 45px;
   }
   .button:hover {
-    box-shadow: 0 0 10px 5px orange;
+    box-shadow: 0 0 10px 5px white;
   }
 
   .puke-game2 {
