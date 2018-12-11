@@ -3,23 +3,25 @@
     <div>
       <button @click="testStrOp">测试字符串操作</button>
     </div>
-
-    <br/>
     <div>
       <button @click="strIndex">js字符串截取</button>
     </div>
-
-    <br/>
     <div>
       <button @click="jsEmptyToJson">js空串转json</button>
     </div>
+    <div>
+      <button @click="strReplace">字符串替换</button>
+    </div>
 
-    <br/>
   </div>
 </template>
 <script>
   export default {
     methods: {
+      strReplace () {
+        let str = ' 1 2 3 4 '
+        console.log('str---' + str.replace(/\s/g, ''))
+      },
       jsEmptyToJson () {
         let str = ''
         console.log('--- ' + JSON.stringify(str))
@@ -44,4 +46,7 @@
 </script>
 <style scoped="scope">
 
+  div > div {
+    margin-top: 10px;
+  }
 </style>

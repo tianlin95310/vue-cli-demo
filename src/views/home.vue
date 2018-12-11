@@ -95,8 +95,9 @@
               id: 303,
               goToPage: 'func'
             }, {
-              menuTitle: 'add',
-              id: 304
+              menuTitle: '解构操作符',
+              id: 304,
+              goToPage: 'objectAnal'
             }]
           },
           {
