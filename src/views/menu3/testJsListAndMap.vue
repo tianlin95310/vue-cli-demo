@@ -53,6 +53,13 @@
         } else {
           console.log('6666666666666666')
         }
+
+        let val4 = NaN
+        if (val4) {
+          console.log('val4---')
+        } else {
+          console.log('val4 is false')
+        }
       },
       array_fun () {
         // 不推荐使用new Array的用法

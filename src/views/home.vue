@@ -94,6 +94,10 @@
               menuTitle: '解构操作符',
               id: 304,
               goToPage: 'objectAnal'
+            }, {
+              menuTitle: '特殊点',
+              id: 305,
+              goToPage: 'particle'
             }]
           },
           {

@@ -9,7 +9,6 @@
            zIndex: puke.zIndex,
            opacity: puke.opacity,
            top: puke.top}"
-         on
          @click="onPukeClick(puke)"
          :class="['puke', puke.id === chooseId ? 'choose': '']">
     </div>
