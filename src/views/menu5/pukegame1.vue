@@ -163,8 +163,8 @@
           let thisOne = thisOnes[0]
           let index = this.leftPs.indexOf(thisOne)
           if (thisOne.position === 1) {
-            thisOne.top = itemDividerH * 1.5 + 'px'
-            thisOne.left = width - pukeWidth * 0.1 - pukeWidth + 'px'
+            thisOne.top = itemDividerH * 2.2 + 'px'
+            thisOne.left = width - pukeWidth * 0.4 - pukeWidth + 'px'
             thisOne.zIndex = this.zIndex++
             setTimeout(() => {
               if (index !== -1) {
@@ -229,8 +229,8 @@
           })
           let thisOne = thisOnes[0]
           let index = this.rightPs.indexOf(thisOne)
-          thisOne.top = itemDividerH * 1.5 + 'px'
-          thisOne.left = pukeWidth * 0.1 + 'px'
+          thisOne.top = itemDividerH * 2.2 + 'px'
+          thisOne.left = pukeWidth * 0.4 + 'px'
           thisOne.zIndex = this.zIndex++
           // 左右两边进行交换
           setTimeout(() => {
@@ -370,7 +370,7 @@
           setTimeout(() => {
             let i = item.i
             let j = item.j
-            let top = (i + 1 / 2) * itemDividerH
+            let top = (i + 1.5) * itemDividerH
             let left = centerX
             let center = i / 2
             if (j < center) {
@@ -386,8 +386,8 @@
         for (let k = 0; k < this.leftPs.length; k++) {
           let item = this.leftPs[k]
           setTimeout(() => {
-            item.left = pukeWidth * 0.1 + 'px'
-            item.top = itemDividerH * 1.5 + 'px'
+            item.left = pukeWidth * 0.4 + 'px'
+            item.top = itemDividerH * 2.2 + 'px'
           }, (k + this.pukes.length) * 30)
         }
       },
@@ -417,30 +417,40 @@
 
   .choose {
     box-shadow: 0px 0px 3px 3px gold;
-    transform: scale(1.1, 1.1);
+    transform: scale(1.5, 1.5);
+    transform-origin: 50% 100%;
   }
 
   .begin {
-    background: #0f131c url(../../images/button.png) -32px 88px;
-    background-size: 220px;
-    border-radius: 8px;
-    box-shadow: 0 0 0px 0px orange;
-    transition: box-shadow 0.3s ease-in-out;
-    line-height: 45px;
-    z-index: 300;
+    background: #0f131c url(../../images/demo.gif);
+    background-size: 100%;
+    border-radius: 10px;
+    transition: all 0.3s ease-in-out;
+    line-height: 70px;
     text-align: center;
     font-size: 20px;
-    color: #fff;
-    top: 40px;
-    left: 200px;
+    color: #ccc;
+    top: 0;
+    left: calc(50% - 71px);
     position: absolute;
     width: 142px;
-    height: 45px;
+    height: 70px;
+    cursor: pointer;
+    z-index: 300;
   }
   .begin:hover {
-    box-shadow: 0 0 10px 5px orange;
+    background: #0f131c url(../../images/demo2.gif);
+    background-size: 100%;
+    transform-origin: 50% 0;
+    opacity: 0.99;
+    color: gold;
+    transform: scale(5, 5);
+    z-index: 300;
+    border-radius: 50%;
+    cursor: pointer;
   }
   .puke {
+    cursor: pointer;
     background-size: 100%;
     background-repeat: round;
     position: absolute;
@@ -453,7 +463,7 @@
   }
 
   .content {
-    background: black center no-repeat fixed;
+    background: #ff8cb5 center no-repeat fixed;
     background-size: 30%;
     position: relative;
     width: 100%;

@@ -74,7 +74,7 @@
   根元素的样式
   */
   #app {
-    font-size: 12px;
+    font-size: 14px;
     font-family: "Microsoft YaHei";
   }
 

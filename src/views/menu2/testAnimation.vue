@@ -5,7 +5,6 @@
     <div>
       <img src="../../assets/logo.png" class="initImg"/>
     </div>
-
     <div class="buttons">
       <button>平移</button>
       <button>旋转</button>

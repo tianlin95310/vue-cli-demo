@@ -1,23 +1,27 @@
 <template>
 
   <div class="root">
-    <ul class="nav">
+    <div class="nav-div">
+      <ul class="nav">
 
-      <li v-for="menu in menus" class="parItem">
-        <div @click="show(menu)" :class="['menuItem', menu.isOpen ? 'selected' : '']">
-          <span class="menuTitle">{{menu.menuTitle}}</span>
-          <i :class="['fa', 'fa-chevron-down', menu.isOpen ? 'faOpen' : 'faClose']"></i>
-        </div>
+        <li v-for="(menu, index) in menus" class="parItem" :key="index">
+          <div @click="show(menu)" :class="['menuItem', menu.isOpen ? 'opened' : '']">
+            <span>{{ menu.menuTitle }}</span>
+            <i :class="['fa', 'fa-chevron-down', menu.isOpen ? 'faOpen' : 'faClose']"></i>
+          </div>
 
-        <ul :class="menu.isOpen === true ? 'submenuShow' : 'submenuClose'">
-          <li v-for="subMenu in menu.subMenus" :key="subMenu.id" @click="onNavClick(subMenu)">
-            <div :class="menu.isOpen === true ? 'menuItemInner' : 'menuItemClose'">
-              <span class="menuTitle">{{subMenu.menuTitle}}</span>
-            </div>
-          </li>
-        </ul>
-      </li>
-    </ul>
+          <ul :class="[menu.isOpen === true ? 'submenuShow' : 'submenuClose']">
+            <li v-for="subMenu in menu.subMenus"
+                :key="subMenu.id"
+                :class="menu.isOpen === true ? 'menuItemInner' : 'menuItemClose'"
+                @click="onNavClick(subMenu)">
+              {{ subMenu.menuTitle }}
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
 
     <div class="level1-route">
       <router-view>
@@ -218,8 +222,8 @@
 <style lang="less" scoped>
   @import "../assets/css/anim.css";
   @import "http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css";
-  .selected {
-    background-color: aqua;
+  .opened {
+    background-color: #444444;
   }
 
   .fa {
@@ -235,90 +239,94 @@
    */
   .root {
     width: 100%;
+    height: 100vh;
+    position: relative;
 
     // 在这里写的样式会往下传递，router-view里面的如果有引用level1-route会有该样式
     .level1-route {
       height: 100%;
-      width: 85%;
-      float: right;
+      margin-left: 18%;
+      position: absolute;
     }
 
-    .nav {
-      float: left; /*元素脱离文档流，不存在块行属性，只要行内剩余的控件足够就在该行显示，不换行*/
-      /*display: inline-block;*/ /*左边的块作为行内块元素，他不进行换行*/
-      width: 15%;
+    .nav-div {
+      width: 18%;
       height: 100%;
-      background-color: lightgrey;
+      background-color: black;
+      position: absolute;
+      color: white;
+      font-size: 0.8rem;
+      .nav {
+        overflow-y: scroll;
+        height: 100%;
+        .parItem {
+          .faOpen {
+            transition: all 0.5s;
+            -moz-transition: all 0.5s; /* Firefox 4 */
+            -webkit-transition: all 0.5s; /* Safari and Chrome */
+            -o-transition: all 0.5s; /* Opera */
+          }
 
-      .parItem {
-        list-style: none;
-        display: list-item;
+          .faClose {
 
-        .faOpen {
+            transform: rotate(-180deg);
+            -ms-transform: rotate(-180deg); /* IE 9 */
+            -webkit-transform: rotate(-180deg); /* Safari and Chrome */
+            -o-transform: rotate(-180deg); /* Opera */
+            -moz-transform: rotate(-180deg); /* Firefox */
 
-          transition: all 0.5s;
-          -moz-transition: all 0.5s; /* Firefox 4 */
-          -webkit-transition: all 0.5s; /* Safari and Chrome */
-          -o-transition: all 0.5s; /* Opera */
+            transition: all 0.5s;
+            -moz-transition: all 0.5s; /* Firefox 4 */
+            -webkit-transition: all 0.5s; /* Safari and Chrome */
+            -o-transition: all 0.5s; /* Opera */
+
+          }
+
+          .submenuClose {
+            display: block;
+            transition: all 0.5s ease;
+          }
+          .submenuClose:hover {
+            background-color: aqua;
+          }
+
+          .submenuShow {
+            width: 100%;
+            display: block;
+            /*animation: fadeinT;*/
+            /*animation-duration: 0.5s;*/
+            transition: all 0.5s ease;
+          }
+
+          .menuItem {
+            padding: 8px;
+            display: block;
+          }
+
+          .menuItemInner {
+            padding: 8px 16px;
+            background: #666666;
+            height: 36px;
+            transition: height 0.5s ease;
+          }
+
+          /*对于li元素高度为0是，如果文字还是出现并且重叠时，说明是overflow为可见时，这时需要将隐藏*/
+          .menuItemClose {
+            height: 0px;
+            transition: height 0.5s ease;
+            overflow: hidden;
+            padding: 0px 16px;
+          }
+
+          .menuItemInner:hover {
+            padding: 8px 16px;
+            background-color: grey;
+          }
         }
 
-        .faClose {
-
-          transform: rotate(-180deg);
-          -ms-transform: rotate(-180deg); /* IE 9 */
-          -webkit-transform: rotate(-180deg); /* Safari and Chrome */
-          -o-transform: rotate(-180deg); /* Opera */
-          -moz-transform: rotate(-180deg); /* Firefox */
-
-          transition: all 0.5s;
-          -moz-transition: all 0.5s; /* Firefox 4 */
-          -webkit-transition: all 0.5s; /* Safari and Chrome */
-          -o-transition: all 0.5s; /* Opera */
-
-        }
-
-        .submenuClose {
-          height: 0px;
-          display: block;
-          animation: fadeinB;
-          animation-duration: 2s;
-        }
-
-        .submenuShow {
-          height: auto;
-          width: 100%;
-          display: block;
-          animation: fadeinB;
-          animation-duration: 2s;
-        }
-
-        .menuItem {
-          padding: 8px;
-          display: block;
-        }
-
-        .menuTitle {
-          font-size: 12px;
-          text-align: center;
-        }
-
-        .menuItemInner {
-          padding: 8px;
-          display: block;
-          background: white;
-        }
-
-        .menuItemClose {
-          display: none;
-        }
-
-        .menuItemInner:hover {
-          padding: 8px;
-          background-color: aqua;
-        }
       }
-
     }
+
   }
 
 </style>
