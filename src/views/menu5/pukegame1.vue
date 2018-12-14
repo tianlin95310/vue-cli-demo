@@ -11,6 +11,7 @@
            top: puke.top}"
          @click="onPukeClick(puke)"
          :class="['puke', puke.id === chooseId ? 'choose': '']">
+      {{ puke.extra }}
     </div>
     <div class="begin" @click="begin">开始</div>
 
@@ -20,6 +21,7 @@
 
 <script>
   // 窗口大小
+  import text from '../../images/text'
   const width = window.screen.width
   const height = window.screen.height
   // 牌的大小
@@ -336,6 +338,16 @@
         for (let i = 0; i < 7; i++) {
           for (let j = 0; j < i + 1; j++) {
             let poker = pokers[index++]
+            let extra = text.text[Math.ceil(Math.random() * text.text.length) - 1]
+            if (!extra) {
+            } else {
+              if (poker.number === 13) {
+                extra = '我自己就可以走'
+              } else {
+                extra = `我需要${dict[13 - poker.number]}`
+              }
+
+            }
             let puke = {
               left: centerX + 'px',
               top: 0 + 'px',
@@ -345,7 +357,8 @@
               position: 0,
               value: poker.number,
               i: i,
-              j: j
+              j: j,
+              extra: extra
             }
             this.pukes.push(puke)
           }
@@ -417,7 +430,7 @@
 
   .choose {
     box-shadow: 0px 0px 3px 3px gold;
-    transform: scale(1.5, 1.5);
+    transform: scale(1.3, 1.3);
     transform-origin: 50% 100%;
   }
 
@@ -439,7 +452,7 @@
     z-index: 300;
   }
   .begin:hover {
-    background: #0f131c url(../../images/demo2.gif);
+    background: #0f131c url(../../images/demo.gif);
     background-size: 100%;
     transform-origin: 50% 0;
     opacity: 0.99;
@@ -459,9 +472,15 @@
     border-radius: 10px;
     /*大于1的值会有回弹效果*/
     transition: 1s cubic-bezier(0.25, 0.1, 0.25, 0.9);
-    transition-property: left,top,opacity,box-shadow;
+    transition-property: left,top,opacity,box-shadow,color;
+    text-align: center;
+    font-weight: bold;
+    color: transparent;
   }
 
+  .puke:hover {
+    color: red;
+  }
   .content {
     background: #ff8cb5 center no-repeat fixed;
     background-size: 30%;

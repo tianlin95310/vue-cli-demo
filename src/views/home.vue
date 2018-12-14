@@ -1,7 +1,7 @@
 <template>
 
   <div class="root">
-    <div class="nav-div">
+    <div class="nav-div" :style="{width: left}">
       <ul class="nav">
 
         <li v-for="(menu, index) in menus" class="parItem" :key="index">
@@ -22,18 +22,19 @@
       </ul>
     </div>
 
-
-    <div class="level1-route">
-      <router-view>
-      </router-view>
-    </div>
+    <!--组件里的样式会给到组件的内容的跟div-->
+    <main-content class="level1-route" :style="{paddingLeft: left}" @collapse="collapse"></main-content>
 
   </div>
 
 </template>
 
 <script>
+  import mainContent from '../components/mainContent.vue'
   export default {
+    components: {
+      mainContent
+    },
     data () {
       return {
         menus: [
@@ -147,10 +148,18 @@
               }
             ]
           }
-        ]
+        ],
+        left: '18%'
       }
     },
     methods: {
+      collapse (isShow) {
+        if (isShow) {
+          this.left = '18%'
+        } else {
+          this.left = '12%'
+        }
+      },
       onNavClick (obj) {
         if (obj.goToPage && obj.goToPage !== '') {
           this.$router.push('/' + obj.goToPage)
@@ -161,9 +170,6 @@
           if (item.menuTitle === menu.menuTitle) {
             item.isOpen = !item.isOpen
           }
-//          else {
-//            item.isOpen = false
-//          }
         })
       }
     },
@@ -241,19 +247,37 @@
     // 在这里写的样式会往下传递，router-view里面的如果有引用level1-route会有该样式
     .level1-route {
       height: 100%;
-      margin-left: 18%;
+      width: 100%;
+      padding-left: 18%;
       position: absolute;
+      transition: padding-left 0.5s ease;
     }
 
     .nav-div {
       width: 18%;
       height: 100%;
       background-color: black;
-      position: absolute;
+      position: fixed;
       color: white;
-      font-size: 0.8rem;
+      font-size: 0.5rem;
+      z-index: 100;
+      transition: all 0.5s ease;
+      .nav::-webkit-scrollbar {
+        width: 10px;
+      }
+      .nav::-webkit-scrollbar-thumb {
+        border-radius: 5px;
+        -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+        background: gray;
+      }
+      /*.nav::-webkit-scrollbar {*/
+        /*-webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);*/
+        /*border-radius: 5px;*/
+        /*background: black;*/
+      /*}*/
       .nav {
         overflow-y: scroll;
+        overflow-x: hidden;
         height: 100%;
         .parItem {
           .faOpen {
@@ -282,9 +306,6 @@
             display: block;
             transition: all 0.5s ease;
           }
-          .submenuClose:hover {
-            background-color: aqua;
-          }
 
           .submenuShow {
             width: 100%;
@@ -298,12 +319,20 @@
             padding: 8px;
             display: block;
           }
+          .menuItem:hover {
+            background-color: #444444;
+          }
 
+          /*text-wrap不被支持，用white-space来定义是否换行*/
           .menuItemInner {
-            padding: 8px 16px;
             background: #666666;
-            height: 36px;
+            height: 42px;
+            padding-left: 16px;
+            line-height: 42px;
             transition: height 0.5s ease;
+            /*text-wrap: none;*/
+            white-space: nowrap;
+            text-overflow: ellipsis
           }
 
           /*对于li元素高度为0是，如果文字还是出现并且重叠时，说明是overflow为可见时，这时需要将隐藏*/
@@ -315,7 +344,6 @@
           }
 
           .menuItemInner:hover {
-            padding: 8px 16px;
             background-color: grey;
           }
         }
