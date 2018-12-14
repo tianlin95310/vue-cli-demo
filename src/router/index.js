@@ -34,6 +34,10 @@ export default new Router({
       component: Home,
       children: [
         {
+          path: '/particle',
+          component: () => import('@/views/menu3/particle')
+        },
+        {
           path: '/testFlex',
           component: () => import('@/views/menu2/testFlex')
         },
