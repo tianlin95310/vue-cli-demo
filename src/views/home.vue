@@ -188,7 +188,6 @@
     },
     // el 被新创建的 vm.$el 替换，并挂载到实例上去之后调用该钩子。如果 root 实例挂载了一个文档内元素，当 mounted 被调用时 vm.$el 也在文档内
     mounted () {
-      console.log('home mounted')
       console.log('home mounted ' + this.$el)
 
       this.$nextTick(function () {
@@ -197,7 +196,7 @@
     },
     // 数据更新时调用，发生在虚拟 DOM 打补丁之前。这里适合在更新之前访问现有的 DOM，比如手动移除已添加的事件监听器。
     beforeUpdate () {
-      console.log('home beforeUpdate')
+      // console.log('home beforeUpdate')
     },
     updated () {
       console.log('home updated')
@@ -268,6 +267,7 @@
       transition: all 0.5s ease;
       .nav::-webkit-scrollbar {
         width: 10px;
+        height: 1px;
       }
       .nav::-webkit-scrollbar-thumb {
         border-radius: 5px;
@@ -314,8 +314,6 @@
           .submenuShow {
             width: 100%;
             display: block;
-            /*animation: fadeinT;*/
-            /*animation-duration: 0.5s;*/
             transition: all 0.5s ease;
           }
 

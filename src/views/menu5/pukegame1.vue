@@ -21,7 +21,6 @@
 
 <script>
   // 窗口大小
-  import text from '../../images/text'
   const width = window.screen.width
   const height = window.screen.height
   // 牌的大小
@@ -338,15 +337,15 @@
         for (let i = 0; i < 7; i++) {
           for (let j = 0; j < i + 1; j++) {
             let poker = pokers[index++]
-            let extra = text.text[Math.ceil(Math.random() * text.text.length) - 1]
-            if (!extra) {
+            let extra = ''
+            if (poker.number === 13) {
+              extra = '我自己就可以走'
             } else {
-              if (poker.number === 13) {
-                extra = '我自己就可以走'
+              if (dict[13 - poker.number] === 'T') {
+                extra = '我需要10'
               } else {
                 extra = `我需要${dict[13 - poker.number]}`
               }
-
             }
             let puke = {
               left: centerX + 'px',
@@ -428,17 +427,38 @@
 
 <style scoped>
 
-  .choose {
-    box-shadow: 0px 0px 3px 3px gold;
-    transform: scale(1.3, 1.3);
-    transform-origin: 50% 100%;
+  @keyframes auto{
+    0% {
+      -webkit-transform: scale(1);
+      transform: scale(1)
+    }
+
+    70%,73% {
+      -webkit-transform: scale(0.9) rotate(-1deg);
+      transform: scale(0.9) rotate(-1deg)
+    }
+
+    77%,83%,90%,97% {
+      -webkit-transform: scale(1.1) rotate(1deg);
+      transform: scale(1.1) rotate(1deg)
+    }
+
+    80%,87%,93% {
+      -webkit-transform: scale(1.1) rotate(-1deg);
+      transform: scale(1.1) rotate(-1deg)
+    }
+
+    100% {
+      -webkit-transform: scale(1) rotate(0);
+      transform: scale(1) rotate(0)
+    }
   }
 
   .begin {
     background: #0f131c url(../../images/demo.gif);
     background-size: 100%;
     border-radius: 10px;
-    transition: all 0.3s ease-in-out;
+    transition: all 0.1s ease;
     line-height: 70px;
     text-align: center;
     font-size: 20px;
@@ -457,30 +477,40 @@
     transform-origin: 50% 0;
     opacity: 0.99;
     color: gold;
-    transform: scale(5, 5);
+    transform: scale(2.5, 2.5);
     z-index: 300;
     border-radius: 50%;
     cursor: pointer;
   }
   .puke {
+    user-select: none;
     cursor: pointer;
     background-size: 100%;
-    background-repeat: round;
     position: absolute;
     width: 136px;
     height: 220px;
+    background-position: 20% 75%;
     border-radius: 10px;
     /*大于1的值会有回弹效果*/
-    transition: 1s cubic-bezier(0.25, 0.1, 0.25, 0.9);
-    transition-property: left,top,opacity,box-shadow,color;
+    transform-origin: 50% 100%;
+    transition: 1s cubic-bezier(0.25, 0.1, 0.25, 1.05);
+    transition-property: left,top,opacity,color,box-shadow;
     text-align: center;
     font-weight: bold;
     color: transparent;
+    animation: auto 3s both infinite;
   }
 
   .puke:hover {
-    color: red;
+    color: gold;
   }
+  .choose {
+    transition-property: background-size;
+    box-shadow: 0px 0px 3px 3px #ff2ac9;
+    background-size: 120%;
+    background-position: 0 0;
+  }
+
   .content {
     background: #ff8cb5 center no-repeat fixed;
     background-size: 30%;

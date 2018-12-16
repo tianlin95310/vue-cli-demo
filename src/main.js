@@ -28,7 +28,10 @@ Vue.config.errorHandler = function (err, vm, info) {
 router.afterEach(function () {
   console.log('router afterEach')
 })
-
+router.beforeEach(function (from, to, next) {
+  console.log('router beforeEach---from---', from.path, '---to---', to.path)
+  next()
+})
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

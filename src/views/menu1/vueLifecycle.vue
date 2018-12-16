@@ -5,7 +5,7 @@
 </template>
 
 <script>
-  import child from '../../components/vueChild.vue'
+  import child from './vueChild.vue'
 
   /**
    * 组件的加载采用递归的模式

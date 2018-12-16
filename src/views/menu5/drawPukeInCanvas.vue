@@ -51,19 +51,19 @@
         let cxt = canvas.getContext('2d')
         cxt.textAlign = 'left'
         cxt.textBaseline = 'top'
-        cxt.font = '120px Arial'
+        cxt.font = '180px Arial'
         let x1 = 50
         let y1 = 50
         let x2 = 50
-        let y2 = 150
+        let y2 = 200
         if (item.value === 'A') {
-          x2 = 55
+          x2 = 58
         }
         if (item.value === '10') {
-          x2 = 80
+          x2 = 105
         }
         if (item.value === 'Q') {
-          x2 = 60
+          x2 = 68
         }
 
         cxt.strokeStyle = '#ff0000'
