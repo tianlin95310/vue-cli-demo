@@ -29,8 +29,9 @@
   .header {
     padding-left: 16px;
     height: 40px;
+    color: white;
     line-height: 40px;
-    background: #fabe12;
+    background: var(--primiryColorDark);
 
   }
 

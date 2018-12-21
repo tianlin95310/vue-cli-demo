@@ -3,9 +3,9 @@
     <i class="child">i am vue child component</i>
     <button @click="testCompFun">测试函数</button>
 
-    <button @click="callInnerFun">条用函数内部函数</button>
+    <button @click="callInnerFun">调用函数内部函数</button>
 
-    <button @click="callOuterFun">条用组件内的全局函数</button>
+    <button @click="callOuterFun">调用组件内的全局函数</button>
 
     <div ref="childDiv"></div>
   </div>

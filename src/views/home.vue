@@ -7,6 +7,7 @@
         <li v-for="(menu, index) in menus" class="parItem" :key="index">
           <div @click="show(menu)" :class="['menuItem', menu.isOpen ? 'opened' : '']">
             <span>{{ menu.menuTitle }}</span>
+            <!--fa-chevron-down 使用的网络第三方的样式-->
             <i :class="['fa', 'fa-chevron-down', menu.isOpen ? 'faOpen' : 'faClose']"></i>
           </div>
 
@@ -54,9 +55,9 @@
               id: 103,
               goToPage: 'vueTransition'
             }, {
-              menuTitle: '非v-model实现双向绑定',
+              menuTitle: '非v-model的组件实现可编辑双向绑定',
               id: 104,
-              goToPage: 'notVModelBind'
+              goToPage: 'selfVModelEle'
             }]
           },
           {
@@ -227,13 +228,11 @@
 <style lang="less" scoped>
   @import "../assets/css/anim.css";
   @import "http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css";
-  .opened {
-    background-color: #444444;
-  }
 
   .fa {
-    opacity: 0.8;
     float: right;
+    margin-right: 8px;
+    line-height: 42px;
   }
 
   /**
@@ -259,51 +258,37 @@
     .nav-div {
       width: 18%;
       height: 100%;
-      background-color: black;
+      background-color: var(--primiryColorDark);
       position: fixed;
       color: white;
-      font-size: 0.5rem;
+      font-size: 0.75rem;
       z-index: 100;
       transition: all 0.5s ease;
       .nav::-webkit-scrollbar {
-        width: 10px;
-        height: 1px;
+        width: 8px;
       }
       .nav::-webkit-scrollbar-thumb {
         border-radius: 5px;
-        -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
-        background: gray;
+        background: var(--colorInfo);
       }
-      /*.nav::-webkit-scrollbar {*/
-        /*-webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);*/
-        /*border-radius: 5px;*/
-        /*background: black;*/
-      /*}*/
+      .nav::-webkit-scrollbar {
+        border-radius: 5px;
+        background: #F1F1F1;
+      }
       .nav {
         overflow-y: scroll;
         overflow-x: hidden;
         height: 100%;
         .parItem {
+          .opened {
+          }
           .faOpen {
             transition: all 0.5s;
-            -moz-transition: all 0.5s; /* Firefox 4 */
-            -webkit-transition: all 0.5s; /* Safari and Chrome */
-            -o-transition: all 0.5s; /* Opera */
+            transform: rotate(0deg)
           }
-
           .faClose {
-
-            transform: rotate(-180deg);
-            -ms-transform: rotate(-180deg); /* IE 9 */
-            -webkit-transform: rotate(-180deg); /* Safari and Chrome */
-            -o-transform: rotate(-180deg); /* Opera */
-            -moz-transform: rotate(-180deg); /* Firefox */
-
+            transform: rotate(-90deg);
             transition: all 0.5s;
-            -moz-transition: all 0.5s; /* Firefox 4 */
-            -webkit-transition: all 0.5s; /* Safari and Chrome */
-            -o-transition: all 0.5s; /* Opera */
-
           }
 
           .submenuClose {
@@ -316,37 +301,39 @@
             display: block;
             transition: all 0.5s ease;
           }
-
           .menuItem {
-            padding: 8px;
             display: block;
+            height: 42px;
+            line-height: 42px;
+            padding-left: 8px;
+            transition: all 0.5s ease;
           }
           .menuItem:hover {
-            background-color: #444444;
+            background-color: var(--colorAccent);
           }
 
           /*text-wrap不被支持，用white-space来定义是否换行*/
           .menuItemInner {
-            background: #666666;
+            background-color: var(--primiryColor);
             height: 42px;
             padding-left: 16px;
             line-height: 42px;
-            transition: height 0.5s ease;
-            /*text-wrap: none;*/
+            transition: all 0.5s ease;
             white-space: nowrap;
             text-overflow: ellipsis
           }
 
           /*对于li元素高度为0是，如果文字还是出现并且重叠时，说明是overflow为可见时，这时需要将隐藏*/
           .menuItemClose {
+            background-color: var(--primiryColor);
             height: 0px;
-            transition: height 0.5s ease;
+            transition: all 0.5s ease;
             overflow: hidden;
-            padding: 0px 16px;
+            padding-left: 16px;
           }
 
           .menuItemInner:hover {
-            background-color: grey;
+            background-color: var(--colorAccent);
           }
         }
 

@@ -5,7 +5,7 @@
 </template>
 
 <script>
-  import child from './vueChild.vue'
+  import child from './childCompLife.vue'
 
   /**
    * 组件的加载采用递归的模式

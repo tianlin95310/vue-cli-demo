@@ -3,24 +3,24 @@
 
     <h3>测试子组件更改父组件的data数据</h3>
 
-    <bind-child v-bind:value="value1">
-    </bind-child>
+    <v-model-child v-bind:value="value1">
+    </v-model-child>
 
-    <not-bind-child v-bind:value="value2">
-    </not-bind-child>
+    <not-v-model-child v-bind:value="value2">
+    </not-v-model-child>
 
     <button @click="show" class="bt">查看</button>
   </div>
 </template>
 
 <script>
-  import notBindChild from '../../components/no_bind_child.vue'
-  import bindChild from '@/components/bind_child'
+  import notVModelChild from './notVModelChild.vue'
+  import vModelChild from './vModelChild.vue'
 
   export default {
     components: {
-      'not-bind-child': notBindChild,
-      'bind-child': bindChild
+      notVModelChild,
+      vModelChild
     },
     methods: {
       show () {

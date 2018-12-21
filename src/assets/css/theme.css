@@ -1,0 +1,12 @@
+
+/*material design*/
+:root {
+  --primiryColor: #41B883;
+  --primiryColorDark: #377a4f;
+
+  --colorAccent: #47d89d;
+  --colorInfo: #909399;
+  --colorWarn: #E6A23C;
+  --colorError: #F56C6C;
+}
+

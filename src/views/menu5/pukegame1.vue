@@ -499,6 +499,8 @@
     font-weight: bold;
     color: transparent;
     animation: auto 3s both infinite;
+    background-color: white;
+    border: 1px solid gold;
   }
 
   .puke:hover {

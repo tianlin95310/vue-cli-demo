@@ -1,29 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-// import Hello from '@/components/Hello'
-import Home from '@/views/home'
-
-import testChildModP from '@/views/menu1/testChildModP'
-import vueLifecycle from '@/views/menu1/vueLifecycle'
-import vueTransition from '@/views/menu1/vueTransition'
-const notVModelBind = () => import('@/views/menu1/notVModelBind')
-
-import testTransition from '@/views/menu2/testTransition'
-import testAnimation from '@/views/menu2/testAnimation'
-import testCssStyle from '@/views/menu2/testCssStyle'
-const testFlex = () => import('@/views/menu2/testFlex')
-
-import testJsListAndMap from '@/views/menu3/testJsListAndMap'
-import listOperate from '@/views/menu3/listOperate'
-
-import asyncAndAwait from '@/views/menu4/asyncAndAwait'
-import dateFormat from '@/views/menu4/dateFormat'
-import stringDealwith from '@/views/menu4/stringDealwith'
-import testSyncAndAsync from '@/views/menu4/testSyncAndAsync'
-
-const drawPuke = () => import('@/views/menu5/drawPuke')
-const drawPukeInCanvas = () => import('@/views/menu5/drawPukeInCanvas')
-
 Vue.use(Router)
 
 export default new Router({
@@ -31,15 +7,50 @@ export default new Router({
     {
       path: '/',
       name: 'Home',
-      component: Home,
+      component: () => import('@/views/home'),
       children: [
+        // ***************************************************menu1***************************************************
         {
-          path: '/particle',
-          component: () => import('@/views/menu3/particle')
+          path: '/testChildModP',
+          component: () => import('@/views/menu1/testChildModP')
+        },
+        {
+          path: '/vueLifecycle',
+          component: () => import('@/views/menu1/vueLifecycle')
+        },
+        {
+          path: '/vueTransition',
+          component: () => import('@/views/menu1/vueTransition')
+        },
+        {
+          path: '/selfVModelEle',
+          component: () => import('@/views/menu1/selfVModelEle')
+        },
+        // ***************************************************menu2***************************************************
+        {
+          path: '/testTransition',
+          component: () => import('@/views/menu2/testTransition')
+        },
+        {
+          path: '/testAnimation',
+          component: () => import('@/views/menu2/testAnimation')
+        },
+        {
+          path: '/testCssStyle',
+          component: () => import('@/views/menu2/testCssStyle')
         },
         {
           path: '/testFlex',
           component: () => import('@/views/menu2/testFlex')
+        },
+        // ***************************************************menu3***************************************************
+        {
+          path: '/testJsListAndMap',
+          component: () => import('@/views/menu3/testJsListAndMap')
+        },
+        {
+          path: '/listOperate',
+          component: () => import('@/views/menu3/listOperate')
         },
         {
           path: '/func',
@@ -50,60 +61,34 @@ export default new Router({
           component: () => import('@/views/menu3/objectAnal')
         },
         {
-          path: '/testChildModP',
-          component: testChildModP
+          path: '/particle',
+          component: () => import('@/views/menu3/particle')
         },
-        {
-          path: '/testJsListAndMap',
-          component: testJsListAndMap
-        },
-        {
-          path: '/vueLifecycle',
-          component: vueLifecycle
-        },
-        {
-          path: '/listOperate',
-          component: listOperate
-        },
-        {
-          path: '/testTransition',
-          component: testTransition
-        },
-        {
-          path: '/testAnimation',
-          component: testAnimation
-        },
-        {
-          path: '/testCssStyle',
-          component: testCssStyle
-        },
+        // ***************************************************menu4***************************************************
         {
           path: '/testSyncAndAsync',
-          component: testSyncAndAsync
+          component: () => import('@/views/menu4/testSyncAndAsync')
         },
         {
           path: '/asyncAndAwait',
-          component: asyncAndAwait
+          component: () => import('@/views/menu4/asyncAndAwait')
         },
         {
           path: '/dateFormat',
-          component: dateFormat
+          component: () => import('@/views/menu4/dateFormat')
         },
         {
           path: '/stringDealwith',
-          component: stringDealwith
+          component: () => import('@/views/menu4/stringDealwith')
         },
-        {
-          path: '/vueTransition',
-          component: vueTransition
-        },
+        // ***************************************************menu5***************************************************
         {
           path: '/drawPuke',
-          component: drawPuke
+          component: () => import('@/views/menu5/drawPuke')
         },
         {
           path: '/drawPukeInCanvas',
-          component: drawPukeInCanvas
+          component: () => import('@/views/menu5/drawPukeInCanvas')
         }
       ]
     },

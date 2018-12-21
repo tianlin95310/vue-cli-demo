@@ -56,7 +56,7 @@
 </script>
 
 <style>
-
+@import "./assets/css/theme.css";
   /**
   默认去掉所有元素的内外间距
   box-sizing兼容性问题
@@ -86,7 +86,6 @@
     width: 100%;
     height: 100%;
     background-color: white;
-
     -webkit-font-smoothing: antialiased;
   }
 </style>
