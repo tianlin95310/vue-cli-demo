@@ -21,6 +21,9 @@
       random () {
         console.log(Math.ceil(Math.random() * 8888 + 1000))
       }
+    },
+    created () {
+      console.log(this.n)
     }
   }
 </script>

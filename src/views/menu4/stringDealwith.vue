@@ -13,11 +13,19 @@
       <button @click="strReplace">字符串替换</button>
     </div>
 
+    <div>
+      <button @click="testStart">判断是否包含某个串</button>
+    </div>
+
   </div>
 </template>
 <script>
   export default {
     methods: {
+      testStart () {
+        let str = 'http://asdasdasdasd'
+        console.log(str.startsWith('http'))
+      },
       strReplace () {
         let str = ' 1 2 3 4 '
         console.log('str---' + str.replace(/\s/g, ''))
