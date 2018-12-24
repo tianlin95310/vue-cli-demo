@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="vue-transition">
     <button v-on:click="show = 2">
       Toggle
     </button>
@@ -22,7 +22,14 @@
   }
 </script>
 
-<style>
+<style lang="less" scoped>
+
+  .vue-transition {
+    margin-left: 16px;
+    button {
+      margin-top: 10px;
+    }
+  }
   .fade-enter-active, .fade-leave-active {
     transition: opacity .5s;
   }

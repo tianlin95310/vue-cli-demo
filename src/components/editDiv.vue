@@ -4,6 +4,7 @@
        :contenteditable="canEdit"
        @focus="isLocked = true"
        @blur="isLocked = false"
+       placeholder="请输入"
        @input="changeText">
   </div>
 </template>
@@ -50,8 +51,9 @@
     user-select: text;
     white-space: pre-wrap;
     text-align: left;
+    /*内容可读写，但粘贴内容中的富文本格式（如文本的颜色、大小，图片等）会丢失*/
+    /*attr(placeholder)可以去属性内容，通常用于content*/
     &[contenteditable=true]{
-      /*内容可读写，但粘贴内容中的富文本格式（如文本的颜色、大小，图片等）会丢失*/
       user-modify: read-write-plaintext-only;
       &:empty:before {
         content: attr(placeholder);

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="vue-life-cycle">
     <child></child>
   </div>
 </template>
@@ -69,6 +69,13 @@
   }
 </script>
 
-<style>
+<style lang="less" scoped>
+  .vue-life-cycle {
+    width: 100%;
+
+    div {
+      margin-top: 16px;
+    }
+  }
 
 </style>

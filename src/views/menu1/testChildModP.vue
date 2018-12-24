@@ -9,7 +9,8 @@
     <not-v-model-child v-bind:value="value2">
     </not-v-model-child>
 
-    <button @click="show" class="bt">查看</button>
+    <div><button @click="show" class="bt">查看</button></div>
+
   </div>
 </template>
 
@@ -36,22 +37,19 @@
   }
 </script>
 
-<style>
-
-  * {
-    margin: 0 auto;
-  }
-
-  menu11 {
+<style scoped lang="less">
+  .menu11 {
     width: 100%;
-  }
-  h3 {
-    text-align: center;
+    margin-left: 16px;
+    .bt {
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    div {
+      margin-top: 16px;
+    }
   }
 
-  .bt {
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
-  }
 </style>
