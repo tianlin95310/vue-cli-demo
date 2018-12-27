@@ -26,6 +26,10 @@ export default new Router({
           path: '/selfVModelEle',
           component: () => import('@/views/menu1/selfVModelEle')
         },
+        {
+          path: '/selfDirective',
+          component: () => import('@/views/menu1/selfDirective')
+        },
         // ***************************************************menu2***************************************************
         {
           path: '/testTransition',

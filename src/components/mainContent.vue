@@ -2,12 +2,14 @@
   <div class="main-content">
     <div class="header">
       <img :class="isShow ? 'menu-show' : 'menu'" src="../assets/svg/ic_collapse.svg" @click="collapse">
-      <img class="right-button" src="../assets/svg/test_svg.svg">
+      <img class="right-button" src="../assets/svg/test_svg.svg" title="别打扰我，让我转会">
     </div>
 
     <div class="content">
-      <router-view>
-      </router-view>
+      <keep-alive>
+        <router-view>
+        </router-view>
+      </keep-alive>
     </div>
 
   </div>
@@ -41,7 +43,7 @@
       height: 40px;
       color: white;
       line-height: 40px;
-      background: var(--primiryColorDark);
+      background: var(--primiryColor);
       .menu {
         margin: 8px 0;
         width: 24px;
@@ -65,12 +67,21 @@
         height: 24px;
         float: right;
         /*linear匀速，可防止出现停顿的问题*/
-        animation: rotateAll 0.5s linear 0s both infinite;
+        animation: rotateAll 1s linear 0s both infinite;
+      }
+      .right-button:hover {
+        margin: 8px 16px;
+        width: 24px;
+        height: 24px;
+        float: right;
+        animation: none
+        /*linear匀速，可防止出现停顿的问题*/
+        // animation: rotateAll 1s linear 0s both infinite;
       }
     }
     .content {
       width: 100%;
-      overflow: hidden;
+      overflow-x: hidden;
       position: relative;
       /*因为calc跟less的有冲突，所以写成这样*/
       height: calc(~"100% - 40px");

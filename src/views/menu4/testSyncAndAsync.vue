@@ -1,10 +1,12 @@
 <template>
-  <div>
-
+  <div class="test-sync-and-async">
     <div>
       <button @click="funa">测试同步回调</button>
     </div>
-    <br/>
+
+    <div>
+      <button @click="testTimeout">测试setTimeout</button>
+    </div>
 
   </div>
 </template>
@@ -20,6 +22,19 @@
       this.funa(this.callback)
     },
     methods: {
+      testTimeout () {
+        console.log('testTimeout')
+        // 延时，并非异步，setTimeout会将时间运行放进队列，类似于消息机制，即使将延时时间设置为0
+        // fun也不会立即执行，他始终会比testTimeout慢，但执行后会和testTimeout的其他代码抢cpu时间
+        setTimeout(() => {
+          console.log('setTimeout 0')
+        }, 0)
+
+        setTimeout(() => {
+          console.log('setTimeout 200')
+        }, 200)
+
+      },
       funa (callback) {
         console.log('11111111111111')
         callback()
@@ -32,28 +47,12 @@
   }
 </script>
 
-<style scoped>
-
-  h3 {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-
-  .initImg {
-    display: block;
-    margin: 0 auto;
-    width: 100px;
-    height: 100px;
-  }
-
-  .buttons {
-    margin-top: 40px;
-    width: 100%;
-  }
-
-  .buttons button{
-
-    width: 20%;
-  }
+<style lang="less" scoped>
+ .test-sync-and-async {
+   padding: 0 16px;
+   div {
+     margin-top: 10px;
+   }
+ }
 
 </style>

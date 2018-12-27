@@ -58,6 +58,10 @@
               menuTitle: '非v-model的组件实现可编辑双向绑定',
               id: 104,
               goToPage: 'selfVModelEle'
+            }, {
+              menuTitle: '自定义指令',
+              id: 105,
+              goToPage: 'selfDirective'
             }]
           },
           {
@@ -162,7 +166,7 @@
         if (isShow) {
           this.left = '18%'
         } else {
-          this.left = '12%'
+          this.left = '10%'
         }
       },
       onNavClick (obj) {
@@ -219,7 +223,6 @@
     },
     errorCaptured () {
       console.log('home errorCaptured')
-
       return false
     }
   }
@@ -227,6 +230,7 @@
 
 <style lang="less" scoped>
   @import "../assets/css/anim.css";
+  /*可直接导入网路的css*/
   @import "http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css";
 
   .fa {
@@ -276,7 +280,7 @@
         background: #F1F1F1;
       }
       .nav {
-        overflow-y: scroll;
+        overflow-y: auto;
         overflow-x: hidden;
         height: 100%;
         .parItem {

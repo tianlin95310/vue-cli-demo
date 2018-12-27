@@ -7,10 +7,11 @@
 </template>
 
 <script>
+  import device from './utils/device'
   export default {
     name: 'app',
     beforeCreate: function () {
-      console.log('app beforeCreate')
+      console.log('app beforeCreate', device.IsPC())
     },
     created () {
       console.log('app created')
@@ -20,7 +21,18 @@
     },
     // el 被新创建的 vm.$el 替换，并挂载到实例上去之后调用该钩子。如果 root 实例挂载了一个文档内元素，当 mounted 被调用时 vm.$el 也在文档内
     mounted () {
-      console.log('app mounted')
+      let isPc = device.IsPC()
+      if (isPc) {
+        let width = document.body.clientWidth
+        let size = width / (1280 / 14) + 'px'
+        document.getElementById('app').style.fontSize = size
+        console.log('app mounted', width, size)
+      } else {
+        let width = document.body.clientWidth
+        let size = width / (320 / 14) + 'px'
+        document.getElementById('app').style.fontSize = size
+        console.log('app mounted', width, size)
+      }
       this.$nextTick(function () {
         console.log('app mounted $nextTick --- ' + this.$el)
       })
@@ -49,7 +61,6 @@
     },
     errorCaptured () {
       console.log('app errorCaptured')
-
       return false
     }
   }

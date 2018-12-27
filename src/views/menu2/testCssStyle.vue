@@ -1,7 +1,7 @@
 <template>
   <div class="root">
     <div class="parent">
-      <p class="test">测试元素位置</p>
+      <p class="test">我在父块的右下角</p>
     </div>
 
     <div class="test-before">
@@ -19,7 +19,6 @@
 <style lang="less">
   .root {
     width: 100%;
-
     .test-before {
       display: inline-block;
       margin-left: 16px;
@@ -28,6 +27,7 @@
       position: relative;
       line-height: 120px;
       background: lightgrey;
+      vertical-align: top;
     }
     .test-before::after {
       content: '\2715';
@@ -42,11 +42,12 @@
     height: 100px;
     display: inline-block;
     background: yellow;
+    font-size: 0.7rem;
 
     .test {
       position: absolute;
-      left: 0;
-      bottom: 30px;
+      right: 0;
+      bottom: 0;
       display: block;
     }
 
