@@ -20,7 +20,6 @@
     getNameFunc: function () {
       console.log('---this对象函数的内部---', this)
       let _this = this
-
       var innerFun = function () {
         console.log('---this对象函数内部的函数---', this)
         return this.name;

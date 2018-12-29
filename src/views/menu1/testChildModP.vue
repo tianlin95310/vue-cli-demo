@@ -15,8 +15,8 @@
 </template>
 
 <script>
-  import notVModelChild from './notVModelChild.vue'
-  import vModelChild from './vModelChild.vue'
+  import notVModelChild from './comp/notVModelChild.vue'
+  import vModelChild from './comp/vModelChild.vue'
 
   export default {
     components: {

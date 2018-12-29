@@ -6,7 +6,7 @@
 
         <li v-for="(menu, index) in menus" class="parItem" :key="index">
           <div @click="show(menu)" :class="['menuItem', menu.isOpen ? 'opened' : '']">
-            <span>{{ menu.menuTitle }}</span>
+            <span>{{index + 1}}， {{ menu.menuTitle }}</span>
             <!--fa-chevron-down 使用的网络第三方的样式-->
             <i :class="['fa', 'fa-chevron-down', menu.isOpen ? 'faOpen' : 'faClose']"></i>
           </div>
@@ -42,94 +42,116 @@
           {
             menuTitle: '测试vue的特性',
             isOpen: false,
-            subMenus: [{
-              menuTitle: '子组件更改父组件的data属性',
-              id: 101,
-              goToPage: 'testChildModP'
-            }, {
-              menuTitle: 'vue的生命周期方法',
-              id: 102,
-              goToPage: 'vueLifecycle'
-            }, {
-              menuTitle: 'vue的transition动画',
-              id: 103,
-              goToPage: 'vueTransition'
-            }, {
-              menuTitle: '非v-model的组件实现可编辑双向绑定',
-              id: 104,
-              goToPage: 'selfVModelEle'
-            }, {
-              menuTitle: '自定义指令',
-              id: 105,
-              goToPage: 'selfDirective'
-            }]
+            subMenus: [
+              {
+                menuTitle: '子组件更改父组件的data属性',
+                id: 101,
+                goToPage: 'testChildModP'
+              },
+              {
+                menuTitle: 'vue的生命周期方法',
+                id: 102,
+                goToPage: 'vueLifecycle'
+              },
+              {
+                menuTitle: 'vue的transition动画',
+                id: 103,
+                goToPage: 'vueTransition'
+              },
+              {
+                menuTitle: '非v-model的组件实现可编辑双向绑定',
+                id: 104,
+                goToPage: 'selfVModelEle'
+              },
+              {
+                menuTitle: '自定义指令',
+                id: 105,
+                goToPage: 'selfDirective'
+              }
+            ]
           },
           {
             menuTitle: '测试CSS的属性',
             isOpen: false,
-            subMenus: [{
-              menuTitle: 'Transition过渡和Transform变换',
-              id: 202,
-              goToPage: 'testTransition'
-            }, {
-              menuTitle: 'animation动画',
-              id: 203,
-              goToPage: 'testAnimation'
-            }, {
-              menuTitle: 'css布局属性探索',
-              goToPage: 'testCssStyle',
-              id: 201
-            }, {
-              menuTitle: 'flex布局',
-              goToPage: 'testFlex',
-              id: 204
-            }]
+            subMenus: [
+              {
+                menuTitle: 'Transition过渡和Transform变换',
+                id: 202,
+                goToPage: 'testTransition'
+              },
+              {
+                menuTitle: 'animation动画',
+                id: 203,
+                goToPage: 'testAnimation'
+              },
+              {
+                menuTitle: 'css布局属性探索',
+                goToPage: 'testCssStyle',
+                id: 201
+              },
+              {
+                menuTitle: 'flex布局',
+                goToPage: 'testFlex',
+                id: 204
+              }
+            ]
           },
           {
             menuTitle: '测试JavaScript属性',
             isOpen: false,
-            subMenus: [{
-              menuTitle: 'js对象的属性',
-              id: 301,
-              goToPage: 'testJsListAndMap'
-            }, {
-              menuTitle: '集合操作',
-              id: 302,
-              goToPage: 'listOperate'
-            }, {
-              menuTitle: '函数',
-              id: 303,
-              goToPage: 'func'
-            }, {
-              menuTitle: '解构操作符',
-              id: 304,
-              goToPage: 'objectAnal'
-            }, {
-              menuTitle: '特殊点',
-              id: 305,
-              goToPage: 'particle'
-            }]
+            subMenus: [
+              {
+                menuTitle: 'js对象的属性',
+                id: 301,
+                goToPage: 'testJsListAndMap'
+              },
+              {
+                menuTitle: '集合操作',
+                id: 302,
+                goToPage: 'listOperate'
+              },
+              {
+                menuTitle: '函数',
+                id: 303,
+                goToPage: 'func'
+              },
+              {
+                menuTitle: '解构操作符',
+                id: 304,
+                goToPage: 'objectAnal'
+              },
+              {
+                menuTitle: '特殊点',
+                id: 305,
+                goToPage: 'particle'
+              }
+            ]
           },
           {
             menuTitle: '工具的使用',
             isOpen: false,
-            subMenus: [{
-              menuTitle: '同步和异步的调用',
-              id: 401,
-              goToPage: 'testSyncAndAsync'
-            }, {
-              menuTitle: '测试async和await的方法',
-              id: 402,
-              goToPage: 'asyncAndAwait'
-            }, {
-              menuTitle: '日期的格式化',
-              id: 403,
-              goToPage: 'dateFormat'
-            }, {
-              menuTitle: '字符串的处理',
-              id: 404,
-              goToPage: 'stringDealwith'
-            }]
+            subMenus: [
+              {
+                menuTitle: '同步和异步的调用',
+                id: 401,
+                goToPage: 'testSyncAndAsync'
+              },
+              {
+                menuTitle: '测试async和await的方法',
+                id: 402,
+                goToPage: 'asyncAndAwait'
+              },
+              {
+                menuTitle: '日期的格式化',
+                id: 403,
+                goToPage: 'dateFormat'
+              },
+              {
+                menuTitle: '字符串的处理',
+                id: 404,
+                goToPage: 'stringDealwith'
+              }
+            ]
           },
           {
             menuTitle: '练手小项目',
@@ -154,6 +176,17 @@
                 menuTitle: '斗地主',
                 id: 504,
                 goToPage: 'pukegame2'
+              }
+            ]
+          },
+          {
+            menuTitle: '自定义控件',
+            isOpen: false,
+            subMenus: [
+              {
+                menuTitle: '画出索引视图',
+                id: 601,
+                goToPage: 'indexView'
               }
             ]
           }
@@ -324,6 +357,7 @@
             line-height: 42px;
             transition: all 0.5s ease;
             white-space: nowrap;
+            overflow: hidden;
             text-overflow: ellipsis
           }
 
@@ -331,9 +365,12 @@
           .menuItemClose {
             background-color: var(--primiryColor);
             height: 0px;
+            line-height: 42px;
             transition: all 0.5s ease;
             overflow: hidden;
             padding-left: 16px;
+            white-space: nowrap;
+            text-overflow: ellipsis
           }
 
           .menuItemInner:hover {

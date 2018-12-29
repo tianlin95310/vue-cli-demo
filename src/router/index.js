@@ -93,6 +93,11 @@ export default new Router({
         {
           path: '/drawPukeInCanvas',
           component: () => import('@/views/menu5/drawPukeInCanvas')
+        },
+        // ***************************************************menu6***************************************************
+        {
+          path: '/indexView',
+          component: () => import('@/views/menu6/indexView')
         }
       ]
     },
