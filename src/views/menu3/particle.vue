@@ -1,5 +1,6 @@
 <template>
   <div>
+    <h2>js的特殊点</h2>
     <div><h4 style="display: inline-block;color: red">在js中 1/2 = </h4> {{ value }} </div>
 
     <div><button @click="random">随机数</button></div>

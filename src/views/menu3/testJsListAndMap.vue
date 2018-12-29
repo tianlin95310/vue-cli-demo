@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h3>测试js中的数据和Map(控制台查看)</h3>
+    <h2>测试js中的数据和Map(控制台查看)</h2>
 
     <div>
       <button @click="array_fun">数组的用法</button>
@@ -118,12 +118,6 @@
 </script>
 
 <style scoped>
-
-  h3 {
-    color: green;
-    margin: 0 auto;
-    text-align: center;
-  }
 
   div button {
     margin-left: 20px;

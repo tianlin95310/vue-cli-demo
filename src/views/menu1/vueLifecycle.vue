@@ -1,5 +1,7 @@
 <template>
   <div class="vue-life-cycle">
+
+    <h2>测试vue的生命周期方法，以及调用组件的方法</h2>
     <child></child>
   </div>
 </template>

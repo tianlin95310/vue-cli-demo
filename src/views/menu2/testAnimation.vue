@@ -1,6 +1,6 @@
 <template>
   <div class="test-animation">
-    <h3>测试Animation动画</h3>
+    <h2>测试Animation动画，定义一组的transform</h2>
     <div>
       <img src="../../assets/logo.png" :class="initImg"/>
     </div>

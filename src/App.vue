@@ -68,6 +68,7 @@
 
 <style>
 @import "./assets/css/theme.css";
+@import "./assets/css/common.css";
   /**
   默认去掉所有元素的内外间距
   box-sizing兼容性问题

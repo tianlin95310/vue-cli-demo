@@ -1,6 +1,7 @@
 <template>
   <div class="test-flex">
     <div class="left1">
+      <h2>测试flex布局，特别是在竖直方向上</h2>
       <div class="top">
         我时候top内容，我占剩下的空间
       </div>

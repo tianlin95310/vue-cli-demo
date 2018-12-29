@@ -1,5 +1,6 @@
 <template>
   <div class="root">
+    <h2>测试css的属性</h2>
     <div class="parent">
       <p class="test">我在父块的右下角</p>
     </div>

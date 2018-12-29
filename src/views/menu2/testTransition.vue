@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h3>测试Transition动画</h3>
+    <h2>测试Transition动画</h2>
 
     <div>
       <img src="../../assets/logo.png" :class="imgAnim1"/>
@@ -94,11 +94,6 @@
 </script>
 
 <style scoped>
-
-  h3 {
-    text-align: center;
-    margin-bottom: 20px;
-  }
 
   .imgAnim5 {
     display: block;

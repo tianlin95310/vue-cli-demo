@@ -1,5 +1,7 @@
 <template>
   <div class="self-model-ele">
+
+    <h2>自定义一个能使用v-model指令的订单</h2>
     <edit-div v-model="content" :canEdit="true">
     </edit-div>
 

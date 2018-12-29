@@ -6,7 +6,7 @@
          :style="{
            color: vColor,
            height: (100 / items.length) + '%',
-           lineHeight: '1.5em'
+           lineHeight: (100 / items.length) + 'vh'
          }"
          class="index-item">
       {{item}}</div>

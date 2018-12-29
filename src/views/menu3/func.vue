@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>对象属性操作是"引用"传递的</h2>
+    <h2>关于函数的一些操作，对象属性操作是"引用"传递的</h2>
     <div>
       <button @click="change">changeObject</button>
     </div>

@@ -1,7 +1,7 @@
 <template>
   <div class="menu11">
 
-    <h3>测试子组件更改父组件的data数据</h3>
+    <h2>测试子组件更改父组件的data数据,分为子组件用v-model和非v-model普通数据</h2>
 
     <v-model-child v-bind:value="value1">
     </v-model-child>

@@ -1,5 +1,6 @@
 <template>
   <div class="self-directive">
+    <h2>测试使用自定义指令，前面加v-</h2>
     <div v-focus>自定义指令</div>
     <video v-autoplay
            @mousedown="mousedown"

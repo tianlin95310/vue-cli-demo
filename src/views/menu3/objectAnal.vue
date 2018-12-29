@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>ES6...运算符的法</h1>
+    <h2>ES6...运算符的法</h2>
     <div><button @click="test1">定义变量是使用</button></div>
 
     <div><button @click="test2">最为形参传递</button></div>

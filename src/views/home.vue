@@ -6,7 +6,7 @@
 
         <li v-for="(menu, index) in menus" class="parItem" :key="index">
           <div @click="show(menu)" :class="['menuItem', menu.isOpen ? 'opened' : '']">
-            <span>{{index + 1}}， {{ menu.menuTitle }}</span>
+            <span>[{{index + 1}}] {{ menu.menuTitle }}</span>
             <!--fa-chevron-down 使用的网络第三方的样式-->
             <i :class="['fa', 'fa-chevron-down', menu.isOpen ? 'faOpen' : 'faClose']"></i>
           </div>
@@ -14,9 +14,9 @@
           <ul :class="[menu.isOpen === true ? 'submenuShow' : 'submenuClose']">
             <li v-for="subMenu in menu.subMenus"
                 :key="subMenu.id"
-                :class="menu.isOpen === true ? 'menuItemInner' : 'menuItemClose'"
+                :class="['menu-item-common', menu.isOpen === true ? 'menuItemInner' : 'menuItemClose']"
                 @click="onNavClick(subMenu)">
-              {{ subMenu.menuTitle }}
+              [{{subMenu.id}}] {{ subMenu.menuTitle }}
             </li>
           </ul>
         </li>
@@ -76,18 +76,18 @@
             subMenus: [
               {
                 menuTitle: 'Transition过渡和Transform变换',
-                id: 202,
+                id: 201,
                 goToPage: 'testTransition'
               },
               {
                 menuTitle: 'animation动画',
-                id: 203,
+                id: 202,
                 goToPage: 'testAnimation'
               },
               {
                 menuTitle: 'css布局属性探索',
                 goToPage: 'testCssStyle',
-                id: 201
+                id: 203
               },
               {
                 menuTitle: 'flex布局',
@@ -199,7 +199,7 @@
         if (isShow) {
           this.left = '18%'
         } else {
-          this.left = '10%'
+          this.left = '12%'
         }
       },
       onNavClick (obj) {
@@ -266,10 +266,11 @@
   /*可直接导入网路的css*/
   @import "http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css";
 
+  @itemHeight: 40px;
   .fa {
     float: right;
     margin-right: 8px;
-    line-height: 42px;
+    line-height: @itemHeight;
   }
 
   /**
@@ -340,39 +341,31 @@
           }
           .menuItem {
             display: block;
-            height: 42px;
-            line-height: 42px;
+            height: @itemHeight;
+            line-height: @itemHeight;
             padding-left: 8px;
             transition: all 0.5s ease;
           }
           .menuItem:hover {
             background-color: var(--colorAccent);
           }
-
+          .menu-item-common {
+            background-color: var(--primiryColor);
+            padding-left: 16px;
+            line-height: @itemHeight;
+            transition: all 0.5s ease;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis
+          }
           /*text-wrap不被支持，用white-space来定义是否换行*/
           .menuItemInner {
-            background-color: var(--primiryColor);
-            height: 42px;
-            padding-left: 16px;
-            line-height: 42px;
-            transition: all 0.5s ease;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis
+            height: @itemHeight;
           }
-
           /*对于li元素高度为0是，如果文字还是出现并且重叠时，说明是overflow为可见时，这时需要将隐藏*/
           .menuItemClose {
-            background-color: var(--primiryColor);
             height: 0px;
-            line-height: 42px;
-            transition: all 0.5s ease;
-            overflow: hidden;
-            padding-left: 16px;
-            white-space: nowrap;
-            text-overflow: ellipsis
           }
-
           .menuItemInner:hover {
             background-color: var(--colorAccent);
           }
