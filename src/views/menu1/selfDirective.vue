@@ -9,11 +9,20 @@
            @mouseup="mouseup">
       <source src="../../images/videoviewdemo.mp4" type="video/mp4"/>
     </video>
+
+    <div v-randomcolor>随机颜色</div>
   </div>
 </template>
 <script>
   export default {
     directives: {
+      randomcolor: {
+        inserted: function (el) {
+          console.log('---randomcolor inserted---', el, el.style)
+          let random = Math.ceil(Math.random() * 0xffffff)
+          el.style.color = '#' + random.toString(16)
+        }
+      },
       autoplay: {
         inserted: function (el) {
           console.log('---autoplay inserted---', el, el.style)
