@@ -85,6 +85,10 @@ export default new Router({
           path: '/stringDealwith',
           component: () => import('@/views/menu4/stringDealwith')
         },
+        {
+          path: '/promiseUse',
+          component: () => import('@/views/menu4/promiseUse')
+        },
         // ***************************************************menu5***************************************************
         {
           path: '/drawPuke',

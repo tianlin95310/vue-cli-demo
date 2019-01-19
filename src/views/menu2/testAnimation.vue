@@ -7,14 +7,15 @@
     <button @click="begin">开始动画</button>
 
     <div>
-      <img src="../../assets/logo.png" class="demo-img" :style="{animation: currentAnim}"/>
+      <!--对于v-bind:style绑定animation的时候，需要将绑定的内容用一个对象包起来-->
+      <img src="../../assets/logo.png" class="demo-img" v-bind:style="currentAnim"/>
     </div>
 
-    <div class="anims">
-      <ul>
-        <li v-for="(item, index) in anims" :key="index" @click="testAnim(index)">[{{index}}]    {{ item }}</li>
-      </ul>
-    </div>
+    <ul class="anims">
+      <li v-for="(item, index) in anims" :key="index" @click="testAnim(index)">
+        [{{index + 1}}] {{ item }}
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -24,18 +25,59 @@
       return {
         anim: false,
         anims: [
+          'fadein',
+          'fadeinT',
+          'fadeinR',
+          'fadeinB',
+          'fadeinL',
+          'fadeout',
+          'fadeoutT',
+          'fadeoutR',
+          'fadeoutB',
+          'fadeoutL',
+          'bounce',
+          'bouncein',
+          'bounceinT',
+          'bounceinR',
+          'bounceinB',
+          'bounceinL',
+          'bounceout',
+          'bounceoutT',
+          'bounceoutR',
+          'bounceoutB',
+          'bounceoutL',
+          'rotatein',
+          'rotateinLT',
+          'rotateinLB',
+          'rotateinRT',
+          'rotateinRB',
+          'rotateout',
+          'rotateoutLT',
+          'rotateoutLB',
+          'rotateoutRT',
+          'rotateoutRB',
+          'flip',
+          'flipinX',
+          'flipinY',
+          'flipoutX',
+          'flipoutY',
+          'flash',
+          'shake',
+          'swing',
+          'wobble',
+          'ring',
           'showinT',
+          'hideinT',
           'autoShake'
         ],
-        index: 0
+        currentAnim: {
+          animation: 'showinT'
+        },
+        index: 0,
+        zIndex: 1
       }
     },
     computed: {
-      currentAnim () {
-        let anim = `'${this.anims[this.index]} 3s both'`
-        console.log(anim)
-        return anim
-      },
       initImg () {
         if (this.anim) {
           return 'initImg-active'
@@ -47,6 +89,12 @@
     methods: {
       testAnim (index) {
         this.index = index
+        let ca = `${this.anims[this.index]} 1s both`
+        console.log(ca)
+        this.currentAnim = {
+          animation: ca
+        }
+        this.zIndex++
       },
       begin () {
         this.anim = !this.anim
@@ -83,23 +131,23 @@
     width: 100%;
     height: 100%;
     position: relative;
+
+    h2 {
+      margin-top: 0;
+    }
     .anims {
-      position: absolute;
-      height: 100%;
+      position: fixed;
+      height: calc(~"100% - 40px");
       background: var(--colorInfo);
+      top: 40px;
       right: 0;
-      top: 0;
-      ul {
-        list-style: none;
-
-        li {
-          padding: 8px;
-          white-space: pre;
-
-        }
-        li:hover {
-          background-color: var(--colorAccent);
-        }
+      list-style: none;
+      overflow-y: scroll;
+      li {
+        padding: 8px;
+      }
+      li:hover {
+        background-color: var(--colorAccent);
       }
     }
     h3 {

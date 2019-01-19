@@ -14,6 +14,7 @@
           <ul :class="[menu.isOpen === true ? 'submenuShow' : 'submenuClose']">
             <li v-for="subMenu in menu.subMenus"
                 :key="subMenu.id"
+                :title="subMenu.menuTitle"
                 :class="['menu-item-common', menu.isOpen === true ? 'menuItemInner' : 'menuItemClose']"
                 @click="onNavClick(subMenu)">
               [{{subMenu.id}}] {{ subMenu.menuTitle }}
@@ -150,6 +151,11 @@
                 menuTitle: '字符串的处理',
                 id: 404,
                 goToPage: 'stringDealwith'
+              },
+              {
+                menuTitle: 'Promise的使用',
+                id: 405,
+                goToPage: 'promiseUse'
               }
             ]
           },
@@ -350,6 +356,7 @@
             background-color: var(--colorAccent);
           }
           .menu-item-common {
+            cursor: pointer;
             background-color: var(--primiryColor);
             padding-left: 16px;
             line-height: @itemHeight;
@@ -368,6 +375,9 @@
           }
           .menuItemInner:hover {
             background-color: var(--colorAccent);
+            margin-left: 1px;
+            padding-top: 1px;
+            font-size: 1.02em;
           }
         }
 

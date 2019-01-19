@@ -1,6 +1,6 @@
 <template>
   <div class="index-view">
-
+    <tl-rating score="3" size="1.8em"></tl-rating>
     <div v-for="(item, index) in items" class="div-item" :ref="item">{{item}}</div>
     <tl-index-view class="index"
                    @onIndexClick="onIndexClick"
@@ -12,9 +12,11 @@
 </template>
 <script>
   import TlIndexView from '../../components/TLIndexView.vue'
+  import TlRating from '../../components/TlRating.vue'
   export default {
     components: {
-      TlIndexView
+      TlIndexView,
+      TlRating
     },
     data () {
       return {

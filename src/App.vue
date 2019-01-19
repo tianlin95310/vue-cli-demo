@@ -69,6 +69,7 @@
 <style>
 @import "./assets/css/theme.css";
 @import "./assets/css/common.css";
+@import "./assets/fonts/fonts.css";
   /**
   默认去掉所有元素的内外间距
   box-sizing兼容性问题
@@ -77,9 +78,9 @@
   * {
     margin: 0;
     padding: 0;
-    box-sizing:border-box;
-    -moz-box-sizing:border-box; /* Firefox */
-    -webkit-box-sizing:border-box; /* Safari */
+    box-sizing: border-box;
+    -moz-box-sizing: border-box; /* Firefox */
+    -webkit-box-sizing: border-box; /* Safari */
   }
 
   /**
@@ -87,7 +88,7 @@
   */
   #app {
     font-size: 14px;
-    font-family: "Microsoft YaHei";
+    font-family: xingshu;
   }
 
   /**

@@ -53,6 +53,7 @@
     height: 100%;
     background: rgba(0, 0, 0, 0.13);
     .index-item {
+      user-select: none;
       text-align: center;
       text-decoration: solid;
       cursor: pointer;
