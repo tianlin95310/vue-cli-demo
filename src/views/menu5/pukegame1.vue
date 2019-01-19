@@ -429,27 +429,22 @@
 
   @keyframes auto{
     0% {
-      -webkit-transform: scale(1);
       transform: scale(1)
     }
 
     70%,73% {
-      -webkit-transform: scale(0.9) rotate(-1deg);
       transform: scale(0.9) rotate(-1deg)
     }
 
     77%,83%,90%,97% {
-      -webkit-transform: scale(1.1) rotate(1deg);
-      transform: scale(1.1) rotate(1deg)
+      transform: scale(1.3) rotate(1deg)
     }
 
     80%,87%,93% {
-      -webkit-transform: scale(1.1) rotate(-1deg);
-      transform: scale(1.1) rotate(-1deg)
+      transform: scale(1.3) rotate(-1deg)
     }
 
     100% {
-      -webkit-transform: scale(1) rotate(0);
       transform: scale(1) rotate(0)
     }
   }
@@ -498,7 +493,6 @@
     text-align: center;
     font-weight: bold;
     color: transparent;
-    animation: auto 3s both infinite;
     background-color: white;
     border: 1px solid gold;
   }
@@ -507,6 +501,7 @@
     color: gold;
   }
   .choose {
+    animation: auto 3s both 3;
     transition-property: background-size;
     box-shadow: 0px 0px 3px 3px #ff2ac9;
     background-size: 120%;

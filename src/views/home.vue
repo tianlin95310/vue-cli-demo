@@ -170,7 +170,7 @@
               {
                 menuTitle: '金字塔扑克牌游戏',
                 id: 503,
-                goToPage: 'pukegame1'
+                goToPage: 'demoTest'
               },
               {
                 menuTitle: '斗地主',
