@@ -30,9 +30,11 @@
       background: lightgrey;
       vertical-align: top;
     }
+    /*::after不在dom上，不能相应时间*/
     .test-before::after {
       content: '\2715';
       position: absolute;
+      cursor: pointer;
       right: -6px;
       line-height: 0px;
     }
@@ -53,7 +55,5 @@
     }
 
   }
-
-
 
 </style>
