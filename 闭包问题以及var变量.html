@@ -18,17 +18,20 @@
   var object = {
     name: "My Object",
     getNameFunc: function () {
-      console.log('---this对象函数的内部---', this)
+      console.log('---object对象函数的内部this---', this)
       let _this = this
       var innerFun = function () {
-        console.log('---this对象函数内部的函数---', this)
+        console.log('---object对象函数内部的函数的变量this---', this)
         return this.name;
       }
       return innerFun
     }
   };
   console.log('---this最外层---', this)
-  console.log('---this---', object.getNameFunc()())
+  console.log('---object的方法调用---', object.getNameFunc()())
+//  【注意】这里的赋值会改变对象的函数内部的this的指向，让他变成是指向window，因为赋值是在对象的外部进行赋值的，
+//  所以js环境运行时，代码里的this只能是是当前window，因为当前作用域不在对象的作用域里，是在外部对象的作用域里
+  console.log('---特殊赋值---', (object.getNameFunc = object.getNameFunc)()())
 
   // var的全局性，n实在另一个文件里的，他是全局的,会被塞进this对象里
   console.log('n', n)
