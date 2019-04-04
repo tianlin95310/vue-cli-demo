@@ -1,25 +1,27 @@
 <template>
   <div class="index-view">
-    <tl-rating score="3" size="1.8em"></tl-rating>
-    <div v-for="(item, index) in items" class="div-item" :ref="item">{{item}}</div>
-    <tl-index-view class="index"
-                   @onIndexClick="onIndexClick"
-                   vWidth="30px"
-                   vColor="#41B883">
+    <tl-rating score="3" size="1.8em"/>
 
-    </tl-index-view>
+    <tl-mini-step-view :steps="steps" :currentStatus="currentStatus"/>
+
   </div>
 </template>
 <script>
   import TlIndexView from '../../components/TLIndexView.vue'
   import TlRating from '../../components/TlRating.vue'
+  import TlMiniStepView from '../../components/TlMiniStepView.vue'
   export default {
     components: {
       TlIndexView,
-      TlRating
+      TlRating,
+      TlMiniStepView
     },
     data () {
       return {
+        currentStatus: 1,
+        steps: [
+          '买家付款', '已服务', '交易完成', '案说法'
+        ],
         items: [
           '*',
           'A', 'B', 'C', 'D', 'E', 'F', 'G',
@@ -45,7 +47,7 @@
   }
 </script>
 
-<style lang="less" scoped>
+<style lang="less">
   .index-view {
     width: 100%;
     height: 100%;

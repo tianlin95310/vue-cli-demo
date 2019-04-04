@@ -68,6 +68,11 @@
                 menuTitle: '自定义指令',
                 id: 105,
                 goToPage: 'selfDirective'
+              },
+              {
+                menuTitle: '绑定数组',
+                id: 106,
+                goToPage: 'bindArray'
               }
             ]
           },
@@ -190,9 +195,25 @@
             isOpen: false,
             subMenus: [
               {
-                menuTitle: '画出索引视图',
+                menuTitle: 'html+css',
                 id: 601,
                 goToPage: 'indexView'
+              },
+              {
+                menuTitle: 'canvas',
+                id: 602,
+                goToPage: 'canvasView'
+              }
+            ]
+          },
+          {
+            menuTitle: '数学算法',
+            isOpen: false,
+            subMenus: [
+              {
+                menuTitle: 'Algorithm',
+                id: 701,
+                goToPage: 'Algorithm'
               }
             ]
           }

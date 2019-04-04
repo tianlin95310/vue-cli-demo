@@ -2,7 +2,15 @@
   <div>
     <h2>集合的常见操作</h2>
     <div>
-      <button @click="sort">测试排序</button>
+      <button @click="sort">测试排序{{ sort() }}</button>
+    </div>
+
+    <div>
+      测试删除指定位置的元素<button @click="sort">{{ splice() }}</button>
+    </div>
+
+    <div>
+      不删除任何东西<button @click="sort">{{ spliceNo() }}</button>
     </div>
 
     <br/>
@@ -30,28 +38,39 @@
     computed: {
     },
     methods: {
+      spliceNo () {
+        let array = [1, 2]
+        return array + '------' + array.splice(0, 0)
+      },
+      splice () {
+        let array = [1, 2, 3]
+        return array + '------' + array.splice(1, 1)
+      },
       sort () {
-        let list = [{
-          name: ''
-        }, {
-          name: '12'
-        }, {
-          name: 'AB'
-        }, {
-          name: 'Cd'
-        }, {
-          name: '34'
-        }, {
-          name: ''
-        }]
-
-        list.forEach(item => {
-          console.log(item.name)
-        })
-        console.log('---------------------------------')
-        list = list.sort(customCompareASC('name'))
-        list.forEach(item => {
-          console.log(item.name)
+        let list = [
+          {
+            name: ''
+          },
+          {
+            name: '12'
+          },
+          {
+            name: 'AB'
+          },
+          {
+            name: 'Cd'
+          },
+          {
+            name: '34'
+          },
+          {
+            name: ''
+          }
+        ]
+        return list.map(item => {
+          return item.name
+        }) + '-------' + list.sort(customCompareASC('name')).map(item => {
+          return item.name
         })
       }
     }

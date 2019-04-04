@@ -30,6 +30,10 @@ export default new Router({
           path: '/selfDirective',
           component: () => import('@/views/menu1/selfDirective')
         },
+        {
+          path: '/bindArray',
+          component: () => import('@/views/menu1/bindArray')
+        },
         // ***************************************************menu2***************************************************
         {
           path: '/testTransition',
@@ -102,6 +106,15 @@ export default new Router({
         {
           path: '/indexView',
           component: () => import('@/views/menu6/indexView')
+        },
+        {
+          path: '/canvasView',
+          component: () => import('@/views/menu6/canvasView')
+        },
+        // ***************************************************menu7数学算法***************************************************
+        {
+          path: '/Algorithm',
+          component: () => import('@/views/menu7/Algorithm')
         }
       ]
     },

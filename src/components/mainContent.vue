@@ -74,7 +74,7 @@
         width: 24px;
         height: 24px;
         float: right;
-        animation: none
+        animation: none;
         /*linear匀速，可防止出现停顿的问题*/
         // animation: rotateAll 1s linear 0s both infinite;
       }

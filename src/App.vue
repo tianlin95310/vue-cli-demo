@@ -68,7 +68,7 @@
 
 <style>
 @import "./assets/css/theme.css";
-@import "./assets/css/common.css";
+@import "./assets/css/common.less";
 @import "./assets/fonts/fonts.css";
   /**
   默认去掉所有元素的内外间距

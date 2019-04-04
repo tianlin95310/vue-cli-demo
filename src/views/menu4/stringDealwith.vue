@@ -1,7 +1,7 @@
 <template>
   <div>
     <div>
-      <button @click="testStrOp">测试字符串操作</button>
+      <button @click="testStrOp">测试字符串split操作</button>
     </div>
     <div>
       <button @click="strIndex">js字符串截取</button>
@@ -14,7 +14,11 @@
     </div>
 
     <div>
-      <button @click="testStart">判断是否包含某个串</button>
+      <button @click="testStart">判断是以某段开头</button>
+    </div>
+
+    <div>
+      <button @click="testTeshu">判断是否包含图书字符</button>
     </div>
 
   </div>
@@ -22,6 +26,10 @@
 <script>
   export default {
     methods: {
+      testTeshu () {
+        let str = '123456'
+        alert(str.indexOf('&') !== -1)
+      },
       testStart () {
         let str = 'http://asdasdasdasd'
         console.log(str.startsWith('http'))
@@ -29,6 +37,12 @@
       strReplace () {
         let str = ' 1 2 3 4 '
         console.log('str---' + str.replace(/\s/g, ''))
+
+        let str1 = ' 1:2:3 4 '
+        console.log('str---' + str1.replace(/:/g, '-'))
+
+        let str3 = ' 1/2/3/4 '
+        console.log('str---' + str3.replace(/\//g, '*'))
       },
       jsEmptyToJson () {
         let str = ''

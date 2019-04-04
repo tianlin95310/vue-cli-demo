@@ -105,7 +105,7 @@
         position: absolute;
         left: 72px;
         top: 36px;
-        background: url("../../images/demo/input (3).png") no-repeat left;
+        background: url("../../images/demo/input.png") no-repeat left;
         background-size: 160px 75px;
         background-position: -35px;
         animation: autoF 5s linear 0s both infinite;
@@ -116,7 +116,7 @@
         bottom: 36px;
         position: absolute;
         margin-top: 32px;
-        background: url("../../images/demo/input (3).png") no-repeat left;
+        background: url("../../images/demo/input.png") no-repeat left;
         background-size: 160px 75px;
         background-position: -35px;
       }
