@@ -7,7 +7,7 @@
 
     <button @click="callOuterFun">调用组件内的全局函数</button>
 
-    <div ref="childDiv"/>
+    <div ref="childDiv"></div>
   </div>
 </template>
 

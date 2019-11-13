@@ -32,10 +32,16 @@ router.beforeEach(function (from, to, next) {
   console.log('router beforeEach---from---', from.path, '---to---', to.path)
   next()
 })
+
+var mixin = {
+  created: function () { console.log('---mixin---created---') }
+}
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
   template: '<App/>',
-  components: { App }
+  components: { App },
+  mixins: [mixin]
 })

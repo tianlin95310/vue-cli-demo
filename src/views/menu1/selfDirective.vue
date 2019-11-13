@@ -7,7 +7,7 @@
            @mousemove="mousemove"
            :style="{left: left + 'px', top: top + 'px'}"
            @mouseup="mouseup">
-      <source src="../../images/videoviewdemo.mp4" type="video/mp4"/>
+      <source src="../../images/videodemo.mp4" type="video/mp4"/>
     </video>
 
     <div v-randomcolor>随机颜色</div>

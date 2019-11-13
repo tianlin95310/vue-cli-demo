@@ -32,7 +32,7 @@
 </template>
 
 <script>
-  import mainContent from '../components/mainContent.vue'
+  import mainContent from './mainContent.vue'
   export default {
     components: {
       mainContent

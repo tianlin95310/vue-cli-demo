@@ -1,18 +1,18 @@
 <template>
   <div class="demo-test">
-    <img class="img1" src="../../images/demo/png1.png"/>
-    <img class="img2" src="../../images/demo/png1.png"/>
+    <img class="img1" src="../../images/png1.png"/>
+    <img class="img2" src="../../images/png1.png"/>
 
-    <img class="img3" src="../../images/demo/png1.png"/>
+    <img class="img3" src="../../images/png1.png"/>
 
-    <img class="img4" src="../../images/demo/png1.png"/>
+    <img class="img4" src="../../images/png1.png"/>
 
     <div class="input-card">
       <input v-model="user" class="user" placeholder="尊姓大名"/>
-      <img class="right-button1" src="../../images/demo/button.png">
+      <img class="right-button1" src="../../images/button.png">
 
       <input v-model.trim="token" class="token" :style="{left: left}" placeholder="江湖密令" type="password"/>
-      <img class="right-button2" src="../../images/demo/button.png">
+      <img class="right-button2" src="../../images/button.png">
 
     </div>
   </div>
@@ -105,7 +105,7 @@
         position: absolute;
         left: 72px;
         top: 36px;
-        background: url("../../images/demo/input.png") no-repeat left;
+        background: url("../../images/input.png") no-repeat left;
         background-size: 160px 75px;
         background-position: -35px;
         animation: autoF 5s linear 0s both infinite;
@@ -116,7 +116,7 @@
         bottom: 36px;
         position: absolute;
         margin-top: 32px;
-        background: url("../../images/demo/input.png") no-repeat left;
+        background: url("../../images/input.png") no-repeat left;
         background-size: 160px 75px;
         background-position: -35px;
       }
